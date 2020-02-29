@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "name": "block-club-calendar",
+  "builds": [
+    {
+      "src": "block-club-calendar/package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "block-club-calendar/$1"
+    }
+  ]
+}
