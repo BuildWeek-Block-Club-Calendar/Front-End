@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 export const FETCH_EVENTS = 'FETCH_EVENTS';

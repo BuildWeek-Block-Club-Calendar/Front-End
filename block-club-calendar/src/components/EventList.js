@@ -10,7 +10,7 @@ const EventList = (props) => {
 
   useEffect(() => {
     props.getEvents()
-  }, []);
+  }, [props]);
 
   const deleteEvent = (id) => {
     props.deleteEvent(id);
@@ -29,7 +29,7 @@ const EventList = (props) => {
       {props.isFetching ? (<div>Loading Events...</div>) : (
         <div>
           {props.events.map((event) => (
-            <div>
+            <div key={event.id}>
               <h3>{event.eventTitle}</h3>
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
