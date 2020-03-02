@@ -20,6 +20,10 @@ const EventList = (props) => {
     props.history.push(`/api/update-event/${id}`);
   };
 
+  const saveEvent = (confirmedEvent) => {
+    props.addToConfirmedList(confirmedEvent);
+  };
+
   return (
     <div>
       {props.isFetching ? (<div>Loading Events...</div>) : (
@@ -36,7 +40,7 @@ const EventList = (props) => {
                 <ModalBody>{event.eventDescription}</ModalBody>
                 <ModalBody>{event.eventAddress}</ModalBody>
                 <ModalFooter>
-                  <Button color="primary" onClick={toggle}>Confirm</Button>{' '}
+                  <Button color="primary" onClick={() => saveEvent(event)}>Confirm</Button>{' '}
                   <Button color="primary" onClick={() => updateEvent(event.id)}>Update</Button>{' '}
                   <Button color="secondary" onClick={() => deleteEvent(event.id)}>Delete</Button>
                 </ModalFooter>
