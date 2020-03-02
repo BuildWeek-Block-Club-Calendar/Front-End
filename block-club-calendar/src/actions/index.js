@@ -17,7 +17,8 @@ export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
 export const DELETE_EVENT_FAILURE = 'DELETE_EVENT_FAILURE';
 
 export const getEvents = () => (dispatch) => {
-  dispatch({ type: FETCH_EVENTS });
+  // CHANGE BACK TO FETCH_EVENTS
+  dispatch({ type: FETCH_EVENTS_SUCCESS });
   axiosWithAuth().get('')
     .then(response => {
       console.log(response);

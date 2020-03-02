@@ -9,21 +9,27 @@ const EventList = (props) => {
 
   return (
     <div>
-      {props.events.map((event) => (
+      {props.isFetching ? (<div>Loading Events...</div>) : (
         <div>
-          <h3>{event.eventTitle}</h3>
-          <p>{event.eventStart} - {event.eventEnd}</p>
-          <p>{event.eventDescription}</p>
-          <address>{event.eventAddress}</address>
+          {props.events.map((event) => (
+            <div>
+              <h3>{event.eventTitle}</h3>
+              <p>{event.eventStart} - {event.eventEnd}</p>
+              <p>{event.eventDescription}</p>
+              <address>{event.eventAddress}</address>
+              <button>More Details</button>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   )
 };
 
 const mapStateToProps = state => {
   return {
-    events: state.events
+    events: state.events,
+    isFetching: state.isFetching
   };
 };
 
