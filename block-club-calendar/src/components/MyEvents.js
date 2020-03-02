@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { removeFromConfirmedList } from '../actions/index';
 
 const MyEvents = (props) => {
+  const unconfirmEvent = (event) => {
+    props.removeFromConfirmedList(event)
+  };
+
   return ( 
     <div>
       {props.confirmed.map(event => (
@@ -10,7 +15,7 @@ const MyEvents = (props) => {
           <p>{event.eventStart} - {event.eventEnd}</p>
           <p>{event.eventDescription}</p>
           <address>{event.eventAddress}</address>
-          <button>Unconfirm</button>
+          <button onClick={() => unconfirmEvent(event)}>Unconfirm</button>
         </div>
       ))}
     </div>
@@ -23,4 +28,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {})(MyEvents);
+export default connect(mapStateToProps, { removeFromConfirmedList })(MyEvents);
