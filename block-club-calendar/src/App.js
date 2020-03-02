@@ -19,7 +19,7 @@ function App() {
         <LoginForm/>
       </Route>
       <Route path="/api/events" component={EventList} />
-      <PrivateRoute path="/api/update-event/:id" component={UpdateEventForm} />
+      <Route path="/api/update-event/:id" component={UpdateEventForm} />
       {/* <PrivateRoute path="/api/users/events" component={} />
       <PrivateRoute path="/api/users/my-events" component={} />
       <PrivateRoute path="/api/create-event" component={} /> */}

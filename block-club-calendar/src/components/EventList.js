@@ -38,7 +38,7 @@ const EventList = (props) => {
                 <ModalFooter>
                   <Button color="primary" onClick={toggle}>Confirm</Button>{' '}
                   <Button color="primary" onClick={() => updateEvent(event.id)}>Update</Button>{' '}
-                  <Button color="secondary" onClick={() => deleteEvent(id)}>Delete</Button>
+                  <Button color="secondary" onClick={() => deleteEvent(event.id)}>Delete</Button>
                 </ModalFooter>
               </Modal>
             </div>
