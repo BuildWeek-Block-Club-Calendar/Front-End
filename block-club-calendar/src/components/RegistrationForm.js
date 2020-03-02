@@ -85,7 +85,7 @@ function RegistrationForm() {
             <input type="submit" />
             <br />
             <span>Already have an Account? </span>
-            <Link to="/sign-up">Sign In Here</Link>
+            <Link to="/api/users/login">Sign In Here</Link>
         </form>
     )
 }

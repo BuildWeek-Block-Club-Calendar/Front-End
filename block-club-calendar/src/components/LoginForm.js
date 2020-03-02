@@ -32,7 +32,7 @@ function LoginForm() {
             <input type="submit" />
             <br />
             <span>New to Block Club Calendar? </span>
-            <Link to="/sign-up">Sign Up Here</Link>
+            <Link to="/api/users/register">Sign Up Here</Link>
             <br />
             <Link to="/api/events">Continue as guest</Link>
         </form>
