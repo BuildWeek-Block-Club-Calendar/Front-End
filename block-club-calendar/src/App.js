@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Link } from "react-router-dom";
 import PrivateRoute from './utils/PrivateRoute';
 import LoginForm from "./components/LoginForm";
@@ -9,13 +9,6 @@ import MyEvents from './components/MyEvents';
 import './App.css';
 
 function App() {
-  const [confirmed, setConfirmed] = useState([]);
-  console.log(confirmed);
-
-  const addToConfirmedList = confirmedEvent => {
-    setConfirmed([...confirmed, confirmedEvent]);
-  };
-
   return (
     <div className="App">
       <nav>
@@ -30,13 +23,12 @@ function App() {
       <Route path="/api/users/register">
        <RegistrationForm/>
       </Route>
-      <Route path="/api/events" render={(props) =>
-        <EventList {...props} addToConfirmedList={addToConfirmedList} />} />
+      <Route path="/api/events" component={EventList} />
+      <Route path="/api/users/events" component={MyEvents} />
       {/* Make a PrivateRoute */}
       <Route path="/api/update-event/:id" component={UpdateEventForm} />
-      <Route path="/api/users/events" render={(props) => <MyEvents {...props} confirmed={confirmed} />} />
-      {/* <PrivateRoute path="/api/users/events" component={} />
-      <PrivateRoute path="/api/create-event" component={} /> */}
+
+      {/* <PrivateRoute path="/api/create-event" component={} /> */}
     </div>
   );
 }

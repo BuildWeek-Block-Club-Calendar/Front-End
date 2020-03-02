@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const MyEvents = (props) => {
   return ( 
@@ -16,4 +17,10 @@ const MyEvents = (props) => {
   );
 };
 
-export default MyEvents;
+const mapStateToProps = state => {
+  return {
+    confirmed: state.confirmed
+  }
+}
+
+export default connect(mapStateToProps, {})(MyEvents);

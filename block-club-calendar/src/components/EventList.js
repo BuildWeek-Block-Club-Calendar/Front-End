@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getEvents, deleteEvent } from '../actions/index';
+import { getEvents, deleteEvent, addToConfirmedList } from '../actions/index';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const EventList = (props) => {
@@ -60,4 +60,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getEvents, deleteEvent })(EventList);
+export default connect(mapStateToProps, { getEvents, deleteEvent, addToConfirmedList })(EventList);

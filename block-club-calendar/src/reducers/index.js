@@ -10,7 +10,8 @@ import {
   UPDATE_EVENT_FAILURE,
   DELETE_EVENT,
   DELETE_EVENT_SUCCESS,
-  DELETE_EVENT_FAILURE
+  DELETE_EVENT_FAILURE,
+  ADD_CONFIRMED
 } from '../actions/index';
 
 const initialState = {
@@ -32,6 +33,7 @@ const initialState = {
       id: 2
     }
   ],
+  confirmed: [],
   isFetching: false,
   error: ''
 };
@@ -113,6 +115,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         isFetching: false,
         error: action.payload
+      }
+    case ADD_CONFIRMED:
+      return {
+        ...state,
+        confirmed: [...state.confirmed, action.payload]
       }
     default:
       return state

@@ -17,6 +17,8 @@ export const DELETE_EVENT = 'DELETE_EVENT';
 export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
 export const DELETE_EVENT_FAILURE = 'DELETE_EVENT_FAILURE';
 
+export const ADD_CONFIRMED = 'ADD_CONFIRMED';
+
 export const getEvents = () => (dispatch) => {
   // CHANGE BACK TO FETCH_EVENTS
   dispatch({ type: FETCH_EVENTS_SUCCESS });
@@ -80,4 +82,8 @@ export const deleteEvent = (id) => (dispatch) => {
     console.log(error);
     dispatch({ type: DELETE_EVENT_FAILURE, payload: error.message });
   });
+};
+
+export const addToConfirmedList = (confirmedEvent) => (dispatch) => {
+  dispatch({ type: ADD_CONFIRMED, payload: confirmedEvent });
 };
