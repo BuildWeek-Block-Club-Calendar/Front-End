@@ -4,7 +4,10 @@ import { useForm } from "react-hook-form";
 
 function LoginForm() {
     const { register, handleSubmit, watch, errors } = useForm()
-    const onSubmit = data => { console.log(data) }
+    const onSubmit = (data, e) => {
+        console.log(data);
+        e.target.reset();
+    }
 
 
     return (

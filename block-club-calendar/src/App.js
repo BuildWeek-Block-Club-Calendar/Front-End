@@ -1,9 +1,10 @@
 import React from 'react';
-import LoginForm from "./components/LoginForm";
 import { Route, Link } from "react-router-dom";
 import PrivateRoute from './utils/PrivateRoute';
+import LoginForm from "./components/LoginForm";
 import EventList from './components/EventList';
 import UpdateEventForm from './components/UpdateEvent';
+import RegistrationForm from "./components/RegistrationForm";
 import './App.css';
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
       </nav>
       <Route exact path="/api/users/login">
         <LoginForm/>
+      </Route>
+      <Route path="/api/users/register">
+       <RegistrationForm/>
       </Route>
       <Route path="/api/events" component={EventList} />
       {/* Make a PrivateRoute */}
