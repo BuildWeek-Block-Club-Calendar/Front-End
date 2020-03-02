@@ -34,7 +34,7 @@ function LoginForm() {
             <span>New to Block Club Calendar? </span>
             <Link to="/sign-up">Sign Up Here</Link>
             <br />
-            <Link to="/events">Continue as guest</Link>
+            <Link to="/api/events">Continue as guest</Link>
         </form>
     )
 }

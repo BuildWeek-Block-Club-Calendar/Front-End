@@ -17,7 +17,8 @@ export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
 export const DELETE_EVENT_FAILURE = 'DELETE_EVENT_FAILURE';
 
 export const getEvents = () => (dispatch) => {
-  dispatch({ type: FETCH_EVENTS });
+  // CHANGE BACK TO FETCH_EVENTS
+  dispatch({ type: FETCH_EVENTS_SUCCESS });
   axiosWithAuth().get('')
     .then(response => {
       console.log(response);
@@ -46,10 +47,10 @@ export const addEvent = (event) => (dispatch) => {
   });
 };
 
-export const updateEvent = (event) => (dispatch) => {
+export const updateEvent = (updatedEvent) => (dispatch) => {
   dispatch({ type: UPDATE_EVENT });
   axiosWithAuth().all([
-    axiosWithAuth().put('', event),
+    axiosWithAuth().put('', updatedEvent),
     axiosWithAuth().get('')
   ])
   .then(axiosWithAuth().spread((put, get) => {
@@ -63,7 +64,7 @@ export const updateEvent = (event) => (dispatch) => {
   });
 };
 
-export const deleteEvent = (event) => (dispatch) => {
+export const deleteEvent = (id) => (dispatch) => {
   dispatch({ type: DELETE_EVENT });
   axiosWithAuth().all([
     axiosWithAuth().delete(''),

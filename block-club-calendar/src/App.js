@@ -1,18 +1,33 @@
 import React from 'react';
+import { Route, Link } from "react-router-dom";
+import PrivateRoute from './utils/PrivateRoute';
 import LoginForm from "./components/LoginForm";
+import EventList from './components/EventList';
+import UpdateEventForm from './components/UpdateEvent';
 import RegistrationForm from "./components/RegistrationForm";
-import {Route} from "react-router-dom";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-          <Route exact path="/">
-          <LoginForm/>
-          </Route>
-          <Route path="/sign-up">
-          <RegistrationForm/>
-          </Route>
+      <nav>
+        <Link to="/api/users/login">Login</Link>
+        <Link to="/api/events">Upcoming Events</Link>
+        <Link to="/api/users/events">My Events</Link>
+        <Link to="/api/create-event">Create Event</Link>
+      </nav>
+      <Route exact path="/api/users/login">
+        <LoginForm/>
+      </Route>
+      <Route path="/api/users/register">
+       <RegistrationForm/>
+      </Route>
+      <Route path="/api/events" component={EventList} />
+      {/* Make a PrivateRoute */}
+      <Route path="/api/update-event/:id" component={UpdateEventForm} />
+      {/* <PrivateRoute path="/api/users/events" component={} />
+      <PrivateRoute path="/api/users/my-events" component={} />
+      <PrivateRoute path="/api/create-event" component={} /> */}
     </div>
   );
 }
