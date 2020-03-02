@@ -20,14 +20,16 @@ const initialState = {
       eventStart: '10AM',
       eventEnd: '12PM',
       eventDescription: 'A fun event',
-      eventAddress: 'New York City, New York'
+      eventAddress: 'New York City, New York',
+      id: 1
     },
     {
       eventTitle: 'Test 2',
       eventStart: '10AM',
       eventEnd: '12PM',
       eventDescription: 'Another fun event',
-      eventAddress: 'New York City, New York'
+      eventAddress: 'New York City, New York',
+      id: 2
     }
   ],
   isFetching: false,
