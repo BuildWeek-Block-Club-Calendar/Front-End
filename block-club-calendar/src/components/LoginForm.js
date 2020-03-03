@@ -12,7 +12,7 @@ function LoginForm(props) {
         .then(response => {
           console.log(response);
           window.localStorage.setItem('token', response.data.token);
-          window.localStorage.setItem('user_id', response.data._id);
+          window.localStorage.setItem('user_id', response.data.user._id);
           props.history.push('/api/events');
         })
         .catch(error => {
