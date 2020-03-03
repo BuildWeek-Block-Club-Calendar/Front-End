@@ -57,10 +57,9 @@ export const reducer = (state = initialState, action) => {
     case FETCH_EVENTS_SUCCESS:
       return {
         ...state,
+        events: [...state.events, action.payload],
         isFetching: false,
-        // events: action.payload,
-        // isFetching: false,
-        // error: ''
+        error: ''
       }
     case FETCH_EVENTS_FAILURE:
       return {
