@@ -22,7 +22,7 @@ const GuestEventList = (props) => {
               <h3>{event.eventTitle}</h3>
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
-              <address>{event.eventAddress}</address>
+              <address>{event.eventAddress}, {event.eventCity}</address>
             </div>
           ))}
         </div>
