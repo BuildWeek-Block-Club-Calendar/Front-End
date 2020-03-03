@@ -41,7 +41,7 @@ const EventList = (props) => {
               <h3>{event.eventTitle}</h3>
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
-              <address>{event.eventAddress}</address>
+              <address>{event.eventAddress}, {event.eventCity}</address>
               <Button onClick={() => saveEvent(event)}>Confirm</Button>{' '}
               <Button onClick={() => updateEvent(event.id)}>Update</Button>{' '}
               <Button onClick={() => deleteEvent(event.id)}>Delete</Button>

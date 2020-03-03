@@ -25,6 +25,9 @@ const initialState = {
       eventDescription: 'A fun event',
       eventStart: '10AM',
       eventEnd: '12PM',
+      eventAddress: '123 Street',
+      eventCity: 'New York City',
+      eventCountry: 'United States',
       id: 1
     },
     {
@@ -32,6 +35,9 @@ const initialState = {
       eventDescription: 'Another fun event',
       eventStart: '10AM',
       eventEnd: '12PM',
+      eventAddress: '123 Street',
+      eventCity: 'New York City',
+      eventCountry: 'United States',
       id: 2
     }
   ],
