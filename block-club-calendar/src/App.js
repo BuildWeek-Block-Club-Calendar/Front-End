@@ -6,6 +6,7 @@ import EventList from './components/EventList';
 import UpdateEventForm from './components/UpdateEvent';
 import RegistrationForm from "./components/RegistrationForm";
 import MyEvents from './components/MyEvents';
+import AddEventForm from './components/AddEventForm';
 import './App.css';
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       <Route path="/api/events" component={EventList} />
       <PrivateRoute path="/api/users/events" component={MyEvents} />
       <PrivateRoute path="/api/update-event/:id" component={UpdateEventForm} />
-      {/* <PrivateRoute path="/api/create-event" component={AddEventForm} /> */}
+      <PrivateRoute path="/api/create-event" component={AddEventForm} />
     </div>
   );
 }
