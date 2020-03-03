@@ -22,7 +22,7 @@ export const REMOVE_CONFRIMED = 'REMOVE_CONFIRMED';
 export const getEvents = () => (dispatch) => {
   // CHANGE BACK TO FETCH_EVENTS
   dispatch({ type: FETCH_EVENTS_SUCCESS });
-  axiosWithAuth().get('')
+  axiosWithAuth().get('/api/rest/events/near')
     .then(response => {
       console.log(response);
       dispatch({ type: FETCH_EVENTS_SUCCESS, payload: response.data });
@@ -36,8 +36,8 @@ export const getEvents = () => (dispatch) => {
 export const addEvent = (event) => (dispatch) => {
   dispatch({ type: ADD_EVENT });
   axiosWithAuth().all([
-    axiosWithAuth().post('', event),
-    axiosWithAuth().get('')
+    axiosWithAuth().post('/api/rest/events', event),
+    axiosWithAuth().get('/api/rest/events/near')
   ])
   .then(axiosWithAuth().spread((post, get) => {
     console.log(post);
@@ -53,8 +53,8 @@ export const addEvent = (event) => (dispatch) => {
 export const updateEvent = (updatedEvent) => (dispatch) => {
   dispatch({ type: UPDATE_EVENT });
   axiosWithAuth().all([
-    axiosWithAuth().put('', updatedEvent),
-    axiosWithAuth().get('')
+    axiosWithAuth().put(`/api/rest/events/${updateEvent.id}`, updatedEvent),
+    axiosWithAuth().get('/api/rest/events/near')
   ])
   .then(axiosWithAuth().spread((put, get) => {
     console.log(put);
@@ -70,8 +70,8 @@ export const updateEvent = (updatedEvent) => (dispatch) => {
 export const deleteEvent = (id) => (dispatch) => {
   dispatch({ type: DELETE_EVENT });
   axiosWithAuth().all([
-    axiosWithAuth().delete(''),
-    axiosWithAuth().get('')
+    axiosWithAuth().delete(`/api/rest/events/${id}`),
+    axiosWithAuth().get('/api/rest/events/near')
   ])
   .then(axiosWithAuth().spread((remove, get) => {
     console.log(remove);
