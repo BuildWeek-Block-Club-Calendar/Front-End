@@ -36,3 +36,50 @@
     transform: rotate(360deg);
   }
 }
+
+html{
+  font-size:62.5%;
+  background:#C39DBF;
+}
+
+h1{
+  font-size:6rem;
+}
+
+label{
+  font-size:3rem;
+}
+
+span{
+  font-size:3rem;
+}
+
+button{
+  font-size:2rem;
+  height:30px;
+  width:120px;
+  background:rgb(161, 110, 156);
+  border:none;
+  border-radius:5px;
+  color:white;
+  margin:20px auto;
+
+}
+
+nav{
+  font-size:3rem;
+  }
+
+
+p{
+  font-size:3rem;
+}
+
+address{
+  font-size:3rem;
+}
+
+h3{
+  font-size:4rem;
+  text-decoration: underline;
+}
