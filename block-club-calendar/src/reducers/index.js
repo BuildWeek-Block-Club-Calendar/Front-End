@@ -2,6 +2,9 @@ import {
   FETCH_EVENTS,
   FETCH_EVENTS_SUCCESS,
   FETCH_EVENTS_FAILURE,
+  FETCH_GUEST_EVENTS,
+  FETCH_GUEST_EVENTS_SUCCESS,
+  FETCH_GUEST_EVENTS_FAILURE,
   ADD_EVENT,
   ADD_EVENT_SUCCESS,
   ADD_EVENT_FAILURE,
@@ -38,6 +41,25 @@ export const reducer = (state = initialState, action) => {
         error: ''
       }
     case FETCH_EVENTS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      }
+    case FETCH_GUEST_EVENTS:
+      return {
+        ...state,
+        isFetching: true,
+        error: ''
+      }
+    case FETCH_GUEST_EVENTS_SUCCESS:
+      return {
+        ...state,
+        events: action.payload,
+        isFetching: false,
+        error: ''
+      }
+    case FETCH_GUEST_EVENTS_FAILURE:
       return {
         ...state,
         isFetching: false,

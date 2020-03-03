@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getEvents } from '../actions/index';
+import { getGuestEvents } from '../actions/index';
 
 const GuestEventList = (props) => {
   useEffect(() => {
-    props.getEvents()
+    props.getGuestEvents()
   }, []);
 
   return (
@@ -32,4 +32,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getEvents })(GuestEventList);
+export default connect(mapStateToProps, { getGuestEvents })(GuestEventList);
