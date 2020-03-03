@@ -22,8 +22,7 @@ function App() {
       <Route path="/api/events" component={EventList} />
       <PrivateRoute path="/api/users/events" component={MyEvents} />
       <PrivateRoute path="/api/update-event/:id" component={UpdateEventForm} />
-
-      {/* <PrivateRoute path="/api/create-event" component={} /> */}
+      {/* <PrivateRoute path="/api/create-event" component={AddEventForm} /> */}
     </div>
   );
 }
