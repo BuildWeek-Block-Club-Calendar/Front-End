@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getEvents, deleteEvent, addToConfirmedList } from '../actions/index';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import MoreDetails from './MoreDetails';
 import { Button } from 'reactstrap';
 
@@ -19,7 +19,7 @@ const EventList = (props) => {
   };
 
   const getDetails = (id) => {
-    props.history.push(`/api/update-event/${id}`);
+    props.history.push(`/api/events/${id}`);
   };
 
   const saveEvent = (confirmedEvent) => {
@@ -28,6 +28,13 @@ const EventList = (props) => {
 
   return (
     <div>
+      <nav>
+        <Link to="/">Login</Link>
+        <Link to="/api/events">Upcoming Events</Link>
+        <Link to="/api/users/events">My Events</Link>
+        <Link to="/api/create-event">Create Event</Link>
+      </nav>
+
       {props.isFetching ? (<div>Loading Events...</div>) : (
         <div>
           {props.events.map((event) => (

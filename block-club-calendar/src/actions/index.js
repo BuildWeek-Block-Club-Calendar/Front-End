@@ -39,7 +39,7 @@ export const getEvents = () => (dispatch) => {
 
 export const getGuestEvents = () => (dispatch) => {
   dispatch({ type: FETCH_GUEST_EVENTS });
-  axios.get('https://evening-wildwood-75186.herokuapp.com/api/rest/events')
+  axios.get('https://evening-wildwood-75186.herokuapp.com/api/guest')
     .then(response => {
       console.log(response);
       dispatch({ type: FETCH_GUEST_EVENTS_SUCCESS, payload: response.data });

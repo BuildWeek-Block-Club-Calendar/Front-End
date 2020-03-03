@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const MoreDetails = (props) => {
   const [modal, setModal] = useState(false);
@@ -11,6 +12,13 @@ const MoreDetails = (props) => {
 
   return (
     <div>
+      <nav>
+        <Link to="/">Login</Link>
+        <Link to="/api/events">Upcoming Events</Link>
+        <Link to="/api/users/events">My Events</Link>
+        <Link to="/api/create-event">Create Event</Link>
+      </nav>
+
       <Modal key={props.event.id} isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{props.event.eventTitle}</ModalHeader>
         <ModalBody>{props.event.eventDescription}</ModalBody>
