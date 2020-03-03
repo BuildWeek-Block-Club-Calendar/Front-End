@@ -1,4 +1,5 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axios from 'axios';
 
 export const FETCH_EVENTS = 'FETCH_EVENTS';
 export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENTS_SUCCESS';
@@ -20,9 +21,8 @@ export const ADD_CONFIRMED = 'ADD_CONFIRMED';
 export const REMOVE_CONFRIMED = 'REMOVE_CONFIRMED';
 
 export const getEvents = () => (dispatch) => {
-  // CHANGE BACK TO FETCH_EVENTS
-  dispatch({ type: FETCH_EVENTS_SUCCESS });
-  axiosWithAuth().get('')
+  dispatch({ type: FETCH_EVENTS });
+  axiosWithAuth().get('/api/rest/events')
     .then(response => {
       console.log(response);
       dispatch({ type: FETCH_EVENTS_SUCCESS, payload: response.data });
@@ -35,11 +35,11 @@ export const getEvents = () => (dispatch) => {
 
 export const addEvent = (event) => (dispatch) => {
   dispatch({ type: ADD_EVENT });
-  axiosWithAuth().all([
-    axiosWithAuth().post('', event),
-    axiosWithAuth().get('')
+  axios.all([
+    axiosWithAuth().post('/api/rest/events', event),
+    axiosWithAuth().get('/api/rest/events')
   ])
-  .then(axiosWithAuth().spread((post, get) => {
+  .then(axios.spread((post, get) => {
     console.log(post);
     console.log(get);
     dispatch({ type: ADD_EVENT_SUCCESS, payload: get.data });
@@ -52,11 +52,11 @@ export const addEvent = (event) => (dispatch) => {
 
 export const updateEvent = (updatedEvent) => (dispatch) => {
   dispatch({ type: UPDATE_EVENT });
-  axiosWithAuth().all([
-    axiosWithAuth().put('', updatedEvent),
-    axiosWithAuth().get('')
+  axios.all([
+    axiosWithAuth().put(`/api/rest/events/${updateEvent.id}`, updatedEvent),
+    axiosWithAuth().get('/api/rest/events')
   ])
-  .then(axiosWithAuth().spread((put, get) => {
+  .then(axios.spread((put, get) => {
     console.log(put);
     console.log(get);
     dispatch({ type: UPDATE_EVENT_SUCCESS, payload: get.data });
@@ -69,11 +69,11 @@ export const updateEvent = (updatedEvent) => (dispatch) => {
 
 export const deleteEvent = (id) => (dispatch) => {
   dispatch({ type: DELETE_EVENT });
-  axiosWithAuth().all([
-    axiosWithAuth().delete(''),
-    axiosWithAuth().get('')
+  axios.all([
+    axiosWithAuth().delete(`/api/rest/events/${id}`),
+    axiosWithAuth().get('/api/rest/events')
   ])
-  .then(axiosWithAuth().spread((remove, get) => {
+  .then(axios.spread((remove, get) => {
     console.log(remove);
     console.log(get);
     dispatch({ type: DELETE_EVENT_SUCCESS, payload: get.data });

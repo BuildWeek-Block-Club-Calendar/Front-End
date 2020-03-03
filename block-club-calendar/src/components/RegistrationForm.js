@@ -1,13 +1,22 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-function RegistrationForm() {
-    const { register, handleSubmit, watch, errors, reset } = useForm()
+function RegistrationForm(props) {
+    const { register, handleSubmit, errors } = useForm();
+
     const onSubmit = (data, e) => {
-        console.log(data);
-        e.target.reset();
-    }
+      e.target.reset();
+      axiosWithAuth().post('/api/users/register', data)
+        .then(response => {
+          console.log(response);
+          props.history.push('/api/events');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -46,9 +55,8 @@ function RegistrationForm() {
             <br />
             <input
                 name="username"
-                ref={register({ required: true })}
+                ref={register}
             />
-            {errors.username && <span>Username is required!</span>}
             <br />
             <label htmlFor="password">Password</label>
             <br />
@@ -62,9 +70,8 @@ function RegistrationForm() {
             <br />
             <input
                 name="address"
-                ref={register({ required: true })}
+                ref={register}
             />
-            {errors.address && <span>Address is required!</span>}
             <br />
             <label htmlFor="city">City</label>
             <br />
@@ -85,7 +92,7 @@ function RegistrationForm() {
             <input type="submit" />
             <br />
             <span>Already have an Account? </span>
-            <Link to="/api/users/login">Sign In Here</Link>
+            <Link to="/">Sign In Here</Link>
         </form>
     )
 }

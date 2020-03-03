@@ -16,24 +16,7 @@ import {
 } from '../actions/index';
 
 const initialState = {
-  events: [
-    {
-      eventTitle: 'Test',
-      eventStart: '10AM',
-      eventEnd: '12PM',
-      eventDescription: 'A fun event',
-      eventAddress: 'New York City, New York',
-      id: 1
-    },
-    {
-      eventTitle: 'Test 2',
-      eventStart: '10AM',
-      eventEnd: '12PM',
-      eventDescription: 'Another fun event',
-      eventAddress: 'New York City, New York',
-      id: 2
-    }
-  ],
+  events: [],
   confirmed: [],
   isFetching: false,
   error: ''
@@ -50,9 +33,9 @@ export const reducer = (state = initialState, action) => {
     case FETCH_EVENTS_SUCCESS:
       return {
         ...state,
-        // events: action.payload,
-        // isFetching: false,
-        // error: ''
+        events: action.payload,
+        isFetching: false,
+        error: ''
       }
     case FETCH_EVENTS_FAILURE:
       return {
