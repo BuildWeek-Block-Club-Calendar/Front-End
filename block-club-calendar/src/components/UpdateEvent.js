@@ -12,9 +12,11 @@ const initialEventState = {
   eventAddress: '',
   eventCity: '',
   eventCountry: '',
-  eventCreator: '',
+  eventCreator: window.localStorage.getItem('token'),
   id: ''
 };
+
+console.log(initialEventState.eventCreator);
 
 const UpdateEvent = (props) => {
   const [updatedEvent, setUpdatedEvent] = useState(initialEventState);
