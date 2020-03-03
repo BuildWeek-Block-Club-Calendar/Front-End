@@ -9,9 +9,9 @@ const MoreDetails = (props) => {
         <ModalBody>{props.event.eventDescription}</ModalBody>
         <ModalBody>{props.event.eventAddress}</ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={() => props.saveprops.event(props.event)}>Confirm</Button>{' '}
-          <Button color="primary" onClick={() => props.updateprops.event(props.event.id)}>Update</Button>{' '}
-          <Button color="secondary" onClick={() => props.deleteprops.event(props.event.id)}>Delete</Button>
+          <Button color="primary" onClick={() => props.saveEvent(props.event)}>Confirm</Button>{' '}
+          <Button color="primary" onClick={() => props.updateEvent(props.event.id)}>Update</Button>{' '}
+          <Button color="secondary" onClick={() => props.deleteEvent(props.event.id)}>Delete</Button>
         </ModalFooter>
       </Modal>
     </div>
