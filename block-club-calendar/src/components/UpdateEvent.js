@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux'; 
 import { updateEvent } from '../actions/index';
+import { Link } from 'react-router-dom';
 
 const initialEventState = {
   eventTitle: '',
@@ -11,9 +12,11 @@ const initialEventState = {
   eventAddress: '',
   eventCity: '',
   eventCountry: '',
-  eventCreator: '',
+  eventCreator: window.localStorage.getItem('token'),
   id: ''
 };
+
+console.log(initialEventState.eventCreator);
 
 const UpdateEvent = (props) => {
   const [updatedEvent, setUpdatedEvent] = useState(initialEventState);
@@ -41,6 +44,13 @@ const UpdateEvent = (props) => {
 
   return (
     <div>
+      <nav>
+        <Link to="/">Login</Link>
+        <Link to="/api/events">Upcoming Events</Link>
+        <Link to="/api/users/events">My Events</Link>
+        <Link to="/api/create-event">Create Event</Link>
+      </nav>
+
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title</label>

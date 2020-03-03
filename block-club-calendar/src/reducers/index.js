@@ -2,6 +2,9 @@ import {
   FETCH_EVENTS,
   FETCH_EVENTS_SUCCESS,
   FETCH_EVENTS_FAILURE,
+  FETCH_GUEST_EVENTS,
+  FETCH_GUEST_EVENTS_SUCCESS,
+  FETCH_GUEST_EVENTS_FAILURE,
   ADD_EVENT,
   ADD_EVENT_SUCCESS,
   ADD_EVENT_FAILURE,
@@ -16,7 +19,28 @@ import {
 } from '../actions/index';
 
 const initialState = {
-  events: [],
+  events: [
+    {
+      eventTitle: 'Block Party',
+      eventDescription: 'Join us for a neighborhood block party. Bring a dish to share.',
+      eventStart: '10AM',
+      eventEnd: '2PM',
+      eventAddress: '123 Street',
+      eventCity: 'New York City',
+      eventCountry: 'United States',
+      id: 1
+    },
+    {
+      eventTitle: 'TopGolf',
+      eventDescription: 'A neighborhood excursion to TopGolf where friends can compete or socialize.',
+      eventStart: '4PM',
+      eventEnd: '6PM',
+      eventAddress: '456 Street',
+      eventCity: 'New York City',
+      eventCountry: 'United States',
+      id: 2
+    }
+  ],
   confirmed: [],
   isFetching: false,
   error: ''
@@ -33,11 +57,30 @@ export const reducer = (state = initialState, action) => {
     case FETCH_EVENTS_SUCCESS:
       return {
         ...state,
-        events: action.payload,
+        events: [...state.events, action.payload],
         isFetching: false,
         error: ''
       }
     case FETCH_EVENTS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      }
+    case FETCH_GUEST_EVENTS:
+      return {
+        ...state,
+        isFetching: true,
+        error: ''
+      }
+    case FETCH_GUEST_EVENTS_SUCCESS:
+      return {
+        ...state,
+        events: action.payload,
+        isFetching: false,
+        error: ''
+      }
+    case FETCH_GUEST_EVENTS_FAILURE:
       return {
         ...state,
         isFetching: false,

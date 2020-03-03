@@ -5,6 +5,10 @@ export const FETCH_EVENTS = 'FETCH_EVENTS';
 export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENTS_SUCCESS';
 export const FETCH_EVENTS_FAILURE = 'FETCH_EVENTS_FAILURE';
 
+export const FETCH_GUEST_EVENTS = 'FETCH_GUEST_EVENTS';
+export const FETCH_GUEST_EVENTS_SUCCESS = 'FETCH_GUEST_EVENTS_SUCCESS';
+export const FETCH_GUEST_EVENTS_FAILURE = 'FETCH_GUEST_EVENTS_FAILURE';
+
 export const ADD_EVENT = 'ADD_EVENT';
 export const ADD_EVENT_SUCCESS = 'ADD_EVENT_SUCCESS';
 export const ADD_EVENT_FAILURE = 'ADD_EVENT_FAILURE';
@@ -30,6 +34,19 @@ export const getEvents = () => (dispatch) => {
     .catch(error => {
       console.log(error);
       dispatch({ type: FETCH_EVENTS_FAILURE, payload: error.message });
+    });
+};
+
+export const getGuestEvents = () => (dispatch) => {
+  dispatch({ type: FETCH_GUEST_EVENTS });
+  axios.get('https://evening-wildwood-75186.herokuapp.com/api/guest')
+    .then(response => {
+      console.log(response);
+      dispatch({ type: FETCH_GUEST_EVENTS_SUCCESS, payload: response.data });
+    })
+    .catch(error => {
+      console.log(error);
+      dispatch({ type: FETCH_GUEST_EVENTS_FAILURE, payload: error.message });
     });
 };
 

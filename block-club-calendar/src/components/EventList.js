@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getEvents, deleteEvent, addToConfirmedList } from '../actions/index';
-import PrivateRoute from '../utils/PrivateRoute';
-import { Route } from 'react-router-dom';
-import MoreDetails from './MoreDetails';
+import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
 const EventList = (props) => {
-  const [modal, setModal] = useState(false);
-
-  const toggle = (event) => {
-    setModal(!modal);
-    props.history.push(`/api/events/${event.id}`);
-  };
-
   useEffect(() => {
     props.getEvents()
-  }, [props]);
+  }, []);
 
   const deleteEvent = (id) => {
     props.deleteEvent(id);
@@ -26,12 +17,23 @@ const EventList = (props) => {
     props.history.push(`/api/update-event/${id}`);
   };
 
+  const getDetails = (id) => {
+    props.history.push(`/api/events/${id}`);
+  };
+
   const saveEvent = (confirmedEvent) => {
     props.addToConfirmedList(confirmedEvent);
   };
 
   return (
     <div>
+      <nav>
+        <Link to="/">Login</Link>
+        <Link to="/api/events">Upcoming Events</Link>
+        <Link to="/api/users/events">My Events</Link>
+        <Link to="/api/create-event">Create Event</Link>
+      </nav>
+
       {props.isFetching ? (<div>Loading Events...</div>) : (
         <div>
           {props.events.map((event) => (
@@ -39,9 +41,10 @@ const EventList = (props) => {
               <h3>{event.eventTitle}</h3>
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
-              <address>{event.eventAddress}</address>
-              <Button onClick={() => toggle(event)}>More Details</Button>
-              <Route path="/api/events/:id"  render={(props) => <MoreDetails {...props} event={event} toggle={toggle} modal={modal} saveEvent={saveEvent} updateEvent={updateEvent} deleteEvent={deleteEvent} />} />
+              <address>{event.eventAddress}, {event.eventCity}</address>
+              <Button onClick={() => saveEvent(event)}>Confirm</Button>{' '}
+              <Button onClick={() => updateEvent(event.id)}>Update</Button>{' '}
+              <Button onClick={() => deleteEvent(event.id)}>Delete</Button>
             </div>
           ))}
         </div>

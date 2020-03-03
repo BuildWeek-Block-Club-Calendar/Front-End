@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { removeFromConfirmedList } from '../actions/index';
+import { Link } from 'react-router-dom';
 
 const MyEvents = (props) => {
   const unconfirmEvent = (event) => {
@@ -9,6 +10,13 @@ const MyEvents = (props) => {
 
   return ( 
     <div>
+      <nav>
+        <Link to="/">Login</Link>
+        <Link to="/api/events">Upcoming Events</Link>
+        <Link to="/api/users/events">My Events</Link>
+        <Link to="/api/create-event">Create Event</Link>
+      </nav>
+      
       {props.confirmed.map(event => (
         <div key={event.id}>
           <h3>{event.eventTitle}</h3>
