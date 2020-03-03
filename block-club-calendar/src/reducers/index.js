@@ -19,28 +19,7 @@ import {
 } from '../actions/index';
 
 const initialState = {
-  events: [
-    {
-      eventTitle: 'Block Party',
-      eventDescription: 'Join us for a neighborhood block party. Bring a dish to share.',
-      eventStart: '10AM',
-      eventEnd: '2PM',
-      eventAddress: '123 Street',
-      eventCity: 'New York City',
-      eventCountry: 'United States',
-      id: 1
-    },
-    {
-      eventTitle: 'TopGolf',
-      eventDescription: 'A neighborhood excursion to TopGolf where friends can compete or socialize.',
-      eventStart: '4PM',
-      eventEnd: '6PM',
-      eventAddress: '456 Street',
-      eventCity: 'New York City',
-      eventCountry: 'United States',
-      id: 2
-    }
-  ],
+  events: [],
   confirmed: [],
   isFetching: false,
   error: ''

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { addEvent } from '../actions/index';
 import { connect } from 'react-redux';
 import cuid from 'cuid';
+import moment from 'moment';
 
 const initialEventState = {
     eventTitle: '',
@@ -22,14 +23,19 @@ function AddEventForm(props) {
     const [newEvent, setNewEvent] = useState(initialEventState);
 
     const handleChanges = (e) => {
+      let value = e.target.value;
+      if (e.target.name === "start_time" || e.target.name === "end_time") {
+        value = moment(value, "LT");
+      };
+
       setNewEvent({
         ...newEvent,
-        [e.target.name]: e.target.value
+        [e.target.name]: value
       });
+      console.log(newEvent);
     };
 
     const onSubmit = (e) => {
-        console.log(newEvent);
         props.addEvent(newEvent);
         props.history.push('/api/events');
     };
@@ -58,6 +64,7 @@ function AddEventForm(props) {
             <br />
             <input
                 name="eventStart"
+                type="time"
                 ref={register}
                 onChange={handleChanges}
             />
@@ -66,6 +73,7 @@ function AddEventForm(props) {
             <br />
             <input
                 name="eventEnd"
+                type="time"
                 ref={register}
                 onChange={handleChanges}
             />
