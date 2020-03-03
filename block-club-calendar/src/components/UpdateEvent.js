@@ -9,6 +9,9 @@ const initialEventState = {
   eventEnd: '',
   eventDescription: '',
   eventAddress: '',
+  eventCity: '',
+  eventCountry: '',
+  eventCreator: '',
   id: ''
 };
 
@@ -84,7 +87,7 @@ const UpdateEvent = (props) => {
               value={updatedEvent.eventAddress}
               onChange={handleChange} />
         </div>
-        {/* <div>
+        <div>
           <label htmlFor="city">City</label>
           <input
               id="city"
@@ -102,15 +105,6 @@ const UpdateEvent = (props) => {
               value={updatedEvent.eventCountry}
               onChange={handleChange} />
         </div>
-        <div>
-          <label htmlFor="creator">Creator</label>
-          <input
-              id="creator"
-              name="creator"
-              type="text"
-              value={updatedEvent.eventCreator}
-              onChange={handleChange} />
-        </div> */}
         <button>Update Event</button>
       </form>
     </div>
