@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux'; 
 import { updateEvent } from '../actions/index';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 
 const initialEventState = {
   eventTitle: '',
@@ -16,8 +15,6 @@ const initialEventState = {
   eventCreator: window.localStorage.getItem('token'),
   _id: ''
 };
-
-console.log(initialEventState.eventCreator);
 
 const UpdateEvent = (props) => {
   const [updatedEvent, setUpdatedEvent] = useState(initialEventState);
@@ -73,20 +70,20 @@ const UpdateEvent = (props) => {
             onChange={handleChange} />
         </div>
         <div>
-          <label htmlFor="start_time">Start Time</label>
+          <label htmlFor="start_time">Event Start</label>
           <input
             id="start_time"
             name="eventStart"
-            type="time"
+            type="datetime-local"
             defaultValue={updatedEvent.eventStart}
             onChange={handleChange} />
         </div>
         <div>
-          <label htmlFor="end_time">End Time</label>
+          <label htmlFor="end_time">Event End</label>
           <input
               id="end_time"
               name="eventEnd"
-              type="time"
+              type="datetime-local"
               defaultValue={updatedEvent.eventEnd}
               onChange={handleChange} />
         </div>
