@@ -6,11 +6,21 @@ import { Button } from 'reactstrap';
 
 const EventList = (props) => {
   useEffect(() => {
-    props.getEvents()
+    props.getEvents();
   }, []);
 
-  const deleteEvent = (id) => {
-    props.deleteEvent(id);
+  const addClass = (event) => {
+    if (event.eventCreator === window.localStorage.getItem('user_id')) {
+      showButtons.classList.add("show");
+    };
+  };
+
+  const showButtons = document.querySelectorAll('.user_action_buttons');
+  console.log(showButtons);
+  // showButtons.addEventListener('load', alert('Page loaded'));
+
+  const deleteEvent = (event) => {
+    props.deleteEvent(event._id);
   };
 
   const updateEvent = (id) => {
@@ -38,9 +48,10 @@ const EventList = (props) => {
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
               <address>{event.eventAddress}, {event.eventCity}</address>
-              <Button onClick={() => saveEvent(event)}>Confirm</Button>{' '}
-              <Button onClick={() => updateEvent(event._id)}>Update</Button>{' '}
-              <Button onClick={() => deleteEvent(event._id)}>Delete</Button>
+              <p>{event.eventCreator}</p>
+                <Button onClick={() => saveEvent(event)}>Confirm</Button>{' '}
+                <Button className="user_action_buttons" onClick={() => updateEvent(event._id)}>Update</Button>{' '}
+                <Button className="user_action_buttons" onClick={() => deleteEvent(event._id)}>Delete</Button>
             </div>
           ))}
         </div>
