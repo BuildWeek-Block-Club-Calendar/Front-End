@@ -48,7 +48,7 @@ const EventList = (props) => {
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
               <address>{event.eventAddress}, {event.eventCity}</address>
-              <p>{event.eventCreator}</p>
+              {/* <p>{event.eventCreator}</p> */}
                 <Button onClick={() => saveEvent(event)}>Confirm</Button>{' '}
                 <Button className="user_action_buttons" onClick={() => updateEvent(event._id)}>Update</Button>{' '}
                 <Button className="user_action_buttons" onClick={() => deleteEvent(event._id)}>Delete</Button>
