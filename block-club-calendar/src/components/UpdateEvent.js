@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux'; 
 import { updateEvent } from '../actions/index';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 const initialEventState = {
   eventTitle: '',
@@ -13,7 +14,7 @@ const initialEventState = {
   eventCity: '',
   eventCountry: '',
   eventCreator: window.localStorage.getItem('token'),
-  id: ''
+  _id: ''
 };
 
 console.log(initialEventState.eventCreator);
@@ -23,23 +24,24 @@ const UpdateEvent = (props) => {
   const { id } = useParams();
 
   useEffect(() => {
-    const eventToEdit = props.events.find(event => `${event.id}` === id);
+    const eventToEdit = props.events.find(event => `${event._id}` === id);
 
     if (eventToEdit) {
+      console.log(eventToEdit);
       setUpdatedEvent(eventToEdit);
     };
   }, [props.events, id]);
 
   const handleChange = event => {
     setUpdatedEvent({
-      ...event,
+      ...updatedEvent,
       [event.target.name]: event.target.value
     });
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  const handleSubmit = () => {
     props.updateEvent(updatedEvent);
+    props.history.push('/api/events');
   };
 
   return (
@@ -56,63 +58,63 @@ const UpdateEvent = (props) => {
           <label htmlFor="title">Title</label>
           <input
             id="title"
-            name="title"
+            name="eventTitle"
             type="text"
-            value={updatedEvent.eventTitle}
+            defaultValue={updatedEvent.eventTitle}
             onChange={handleChange} />
         </div>
         <div>
           <label htmlFor="description">Description</label>
           <input
             id="description"
-            name="description"
+            name="eventDescription"
             type="text"
-            value={updatedEvent.eventDescription}
+            defaultValue={updatedEvent.eventDescription}
             onChange={handleChange} />
         </div>
         <div>
           <label htmlFor="start_time">Start Time</label>
           <input
             id="start_time"
-            name="start_time"
-            type="text"
-            value={updatedEvent.eventStart}
+            name="eventStart"
+            type="time"
+            defaultValue={updatedEvent.eventStart}
             onChange={handleChange} />
         </div>
         <div>
           <label htmlFor="end_time">End Time</label>
           <input
               id="end_time"
-              name="end_time"
-              type="text"
-              value={updatedEvent.eventEnd}
+              name="eventEnd"
+              type="time"
+              defaultValue={updatedEvent.eventEnd}
               onChange={handleChange} />
         </div>
         <div>
           <label htmlFor="address">Address</label>
           <input
               id="address"
-              name="address"
+              name="eventAddress"
               type="text"
-              value={updatedEvent.eventAddress}
+              defaultValue={updatedEvent.eventAddress}
               onChange={handleChange} />
         </div>
         <div>
           <label htmlFor="city">City</label>
           <input
               id="city"
-              name="city"
+              name="eventCity"
               type="text"
-              value={updatedEvent.eventCity}
+              defaultValue={updatedEvent.eventCity}
               onChange={handleChange} />
         </div>
         <div>
           <label htmlFor="country">Country</label>
           <input
               id="country"
-              name="country"
+              name="eventCountry"
               type="text"
-              value={updatedEvent.eventCountry}
+              defaultValue={updatedEvent.eventCountry}
               onChange={handleChange} />
         </div>
         <button>Update Event</button>

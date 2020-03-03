@@ -68,16 +68,21 @@ export const addEvent = (event) => (dispatch) => {
 };
 
 export const updateEvent = (updatedEvent) => (dispatch) => {
+  console.log('Updated Event log:', updatedEvent)
   dispatch({ type: UPDATE_EVENT });
-  axios.all([
-    axiosWithAuth().put(`/api/rest/events/${updateEvent.id}`, updatedEvent),
+  axiosWithAuth().put(`/api/rest/events/${updatedEvent._id}`, updatedEvent)
+  .then(response => {
     axiosWithAuth().get('/api/rest/events')
-  ])
-  .then(axios.spread((put, get) => {
-    console.log(put);
-    console.log(get);
-    dispatch({ type: UPDATE_EVENT_SUCCESS, payload: get.data });
-  }))
+      .then(response => {
+        console.log(response);
+        dispatch({ type: UPDATE_EVENT_SUCCESS, payload: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch({ type: FETCH_EVENTS_FAILURE, payload: error.message });
+      });
+    console.log(response);
+  })
   .catch(error => {
     console.log(error);
     dispatch({ type: UPDATE_EVENT_FAILURE, payload: error.message });
@@ -85,6 +90,7 @@ export const updateEvent = (updatedEvent) => (dispatch) => {
 };
 
 export const deleteEvent = (id) => (dispatch) => {
+  console.log(id);
   dispatch({ type: DELETE_EVENT });
   axios.all([
     axiosWithAuth().delete(`/api/rest/events/${id}`),
@@ -92,7 +98,6 @@ export const deleteEvent = (id) => (dispatch) => {
   ])
   .then(axios.spread((remove, get) => {
     console.log(remove);
-    console.log(get);
     dispatch({ type: DELETE_EVENT_SUCCESS, payload: get.data });
   }))
   .catch(error => {

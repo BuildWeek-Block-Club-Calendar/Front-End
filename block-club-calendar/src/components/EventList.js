@@ -17,10 +17,6 @@ const EventList = (props) => {
     props.history.push(`/api/update-event/${id}`);
   };
 
-  const getDetails = (id) => {
-    props.history.push(`/api/events/${id}`);
-  };
-
   const saveEvent = (confirmedEvent) => {
     props.addToConfirmedList(confirmedEvent);
   };
@@ -37,14 +33,14 @@ const EventList = (props) => {
       {props.isFetching ? (<div>Loading Events...</div>) : (
         <div>
           {props.events.map((event) => (
-            <div key={event.id}>
+            <div key={event._id}>
               <h3>{event.eventTitle}</h3>
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
               <address>{event.eventAddress}, {event.eventCity}</address>
               <Button onClick={() => saveEvent(event)}>Confirm</Button>{' '}
-              <Button onClick={() => updateEvent(event.id)}>Update</Button>{' '}
-              <Button onClick={() => deleteEvent(event.id)}>Delete</Button>
+              <Button onClick={() => updateEvent(event._id)}>Update</Button>{' '}
+              <Button onClick={() => deleteEvent(event._id)}>Delete</Button>
             </div>
           ))}
         </div>
