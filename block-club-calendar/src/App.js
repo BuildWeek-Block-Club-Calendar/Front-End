@@ -12,12 +12,12 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <Link to="/api/users/login">Login</Link>
+        <Link to="/">Login</Link>
         <Link to="/api/events">Upcoming Events</Link>
         <Link to="/api/users/events">My Events</Link>
         <Link to="/api/create-event">Create Event</Link>
       </nav>
-      <Route exact path="/api/users/login">
+      <Route exact path="/">
         <LoginForm/>
       </Route>
       <Route path="/api/users/register">
