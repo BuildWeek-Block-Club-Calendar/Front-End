@@ -21,21 +21,21 @@ import {
 const initialState = {
   events: [
     {
-      eventTitle: 'Party',
-      eventDescription: 'A fun event',
+      eventTitle: 'Block Party',
+      eventDescription: 'Join us for a neighborhood block party. Bring a dish to share.',
       eventStart: '10AM',
-      eventEnd: '12PM',
+      eventEnd: '2PM',
       eventAddress: '123 Street',
       eventCity: 'New York City',
       eventCountry: 'United States',
       id: 1
     },
     {
-      eventTitle: 'Another Party',
-      eventDescription: 'Another fun event',
-      eventStart: '10AM',
-      eventEnd: '12PM',
-      eventAddress: '123 Street',
+      eventTitle: 'TopGolf',
+      eventDescription: 'A neighborhood excursion to TopGolf where friends can compete or socialize.',
+      eventStart: '4PM',
+      eventEnd: '6PM',
+      eventAddress: '456 Street',
       eventCity: 'New York City',
       eventCountry: 'United States',
       id: 2
