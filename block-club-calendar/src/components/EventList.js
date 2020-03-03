@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getEvents, deleteEvent } from '../actions/index';
+import { getEvents, deleteEvent, addToConfirmedList } from '../actions/index';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const EventList = (props) => {
@@ -10,7 +10,7 @@ const EventList = (props) => {
 
   useEffect(() => {
     props.getEvents()
-  }, []);
+  }, [props]);
 
   const deleteEvent = (id) => {
     props.deleteEvent(id);
@@ -20,12 +20,16 @@ const EventList = (props) => {
     props.history.push(`/api/update-event/${id}`);
   };
 
+  const saveEvent = (confirmedEvent) => {
+    props.addToConfirmedList(confirmedEvent);
+  };
+
   return (
     <div>
       {props.isFetching ? (<div>Loading Events...</div>) : (
         <div>
           {props.events.map((event) => (
-            <div>
+            <div key={event.id}>
               <h3>{event.eventTitle}</h3>
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
@@ -36,7 +40,7 @@ const EventList = (props) => {
                 <ModalBody>{event.eventDescription}</ModalBody>
                 <ModalBody>{event.eventAddress}</ModalBody>
                 <ModalFooter>
-                  <Button color="primary" onClick={toggle}>Confirm</Button>{' '}
+                  <Button color="primary" onClick={() => saveEvent(event)}>Confirm</Button>{' '}
                   <Button color="primary" onClick={() => updateEvent(event.id)}>Update</Button>{' '}
                   <Button color="secondary" onClick={() => deleteEvent(event.id)}>Delete</Button>
                 </ModalFooter>
@@ -56,4 +60,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getEvents, deleteEvent })(EventList);
+export default connect(mapStateToProps, { getEvents, deleteEvent, addToConfirmedList })(EventList);

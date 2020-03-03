@@ -10,7 +10,9 @@ import {
   UPDATE_EVENT_FAILURE,
   DELETE_EVENT,
   DELETE_EVENT_SUCCESS,
-  DELETE_EVENT_FAILURE
+  DELETE_EVENT_FAILURE,
+  ADD_CONFIRMED,
+  REMOVE_CONFRIMED
 } from '../actions/index';
 
 const initialState = {
@@ -32,6 +34,7 @@ const initialState = {
       id: 2
     }
   ],
+  confirmed: [],
   isFetching: false,
   error: ''
 };
@@ -114,7 +117,19 @@ export const reducer = (state = initialState, action) => {
         isFetching: false,
         error: action.payload
       }
+    case ADD_CONFIRMED:
+      return {
+        ...state,
+        confirmed: [...state.confirmed, action.payload]
+      }
+    case REMOVE_CONFRIMED:
+      return {
+        ...state,
+        confirmed: state.confirmed.filter((event) => {
+          return event.id !== action.payload.id
+        })
+      }
     default:
       return state
   }
-}
+};
