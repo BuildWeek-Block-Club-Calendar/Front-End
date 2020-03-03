@@ -56,9 +56,8 @@ function RegistrationForm(props) {
             <br />
             <input
                 name="username"
-                ref={register({ required: true })}
+                ref={register}
             />
-            {errors.username && <span>Username is required!</span>}
             <br />
             <label htmlFor="password">Password</label>
             <br />
@@ -72,9 +71,8 @@ function RegistrationForm(props) {
             <br />
             <input
                 name="address"
-                ref={register({ required: true })}
+                ref={register}
             />
-            {errors.address && <span>Address is required!</span>}
             <br />
             <label htmlFor="city">City</label>
             <br />
