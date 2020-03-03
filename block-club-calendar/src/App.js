@@ -20,9 +20,8 @@ function App() {
       <Route exact path="/" render={(props) => <LoginForm {...props} />} />
       <Route path="/api/users/register" render={(props) => <RegistrationForm {...props} />} />
       <Route path="/api/events" component={EventList} />
-      <Route path="/api/users/events" component={MyEvents} />
-      {/* Make a PrivateRoute */}
-      <Route path="/api/update-event/:id" component={UpdateEventForm} />
+      <PrivateRoute path="/api/users/events" component={MyEvents} />
+      <PrivateRoute path="/api/update-event/:id" component={UpdateEventForm} />
 
       {/* <PrivateRoute path="/api/create-event" component={} /> */}
     </div>
