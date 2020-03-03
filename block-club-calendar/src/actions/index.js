@@ -28,11 +28,9 @@ export const getEvents = () => (dispatch) => {
   dispatch({ type: FETCH_EVENTS });
   axiosWithAuth().get('/api/rest/events')
     .then(response => {
-      console.log(response);
       dispatch({ type: FETCH_EVENTS_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      console.log(error);
       dispatch({ type: FETCH_EVENTS_FAILURE, payload: error.message });
     });
 };
@@ -41,11 +39,9 @@ export const getGuestEvents = () => (dispatch) => {
   dispatch({ type: FETCH_GUEST_EVENTS });
   axios.get('https://evening-wildwood-75186.herokuapp.com/api/guest')
     .then(response => {
-      console.log(response);
       dispatch({ type: FETCH_GUEST_EVENTS_SUCCESS, payload: response.data });
     })
     .catch(error => {
-      console.log(error);
       dispatch({ type: FETCH_GUEST_EVENTS_FAILURE, payload: error.message });
     });
 };
@@ -58,39 +54,32 @@ export const addEvent = (event) => (dispatch) => {
   ])
   .then(axios.spread((post, get) => {
     console.log(post);
-    console.log(get);
     dispatch({ type: ADD_EVENT_SUCCESS, payload: get.data });
   }))
   .catch(error => {
-    console.log(error);
     dispatch({ type: ADD_EVENT_FAILURE, payload: error.message });
   });
 };
 
 export const updateEvent = (updatedEvent) => (dispatch) => {
-  console.log('Updated Event log:', updatedEvent)
   dispatch({ type: UPDATE_EVENT });
   axiosWithAuth().put(`/api/rest/events/${updatedEvent._id}`, updatedEvent)
   .then(response => {
     axiosWithAuth().get('/api/rest/events')
       .then(response => {
-        console.log(response);
         dispatch({ type: UPDATE_EVENT_SUCCESS, payload: response.data });
       })
       .catch(error => {
-        console.log(error);
         dispatch({ type: FETCH_EVENTS_FAILURE, payload: error.message });
       });
     console.log(response);
   })
   .catch(error => {
-    console.log(error);
     dispatch({ type: UPDATE_EVENT_FAILURE, payload: error.message });
   });
 };
 
 export const deleteEvent = (id) => (dispatch) => {
-  console.log(id);
   dispatch({ type: DELETE_EVENT });
   axios.all([
     axiosWithAuth().delete(`/api/rest/events/${id}`),
@@ -101,7 +90,6 @@ export const deleteEvent = (id) => (dispatch) => {
     dispatch({ type: DELETE_EVENT_SUCCESS, payload: get.data });
   }))
   .catch(error => {
-    console.log(error);
     dispatch({ type: DELETE_EVENT_FAILURE, payload: error.message });
   });
 };

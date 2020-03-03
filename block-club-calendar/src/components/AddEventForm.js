@@ -26,7 +26,6 @@ function AddEventForm(props) {
         ...newEvent,
         [e.target.name]: e.target.value
       });
-      console.log(newEvent);
     };
 
     const onSubmit = (e) => {

@@ -10,7 +10,6 @@ function LoginForm(props) {
       e.target.reset();
       axiosWithAuth().post('/api/users/login', data)
         .then(response => {
-          console.log(response);
           window.localStorage.setItem('token', response.data.token);
           window.localStorage.setItem('user_id', response.data.user._id);
           props.history.push('/api/events');

@@ -10,7 +10,6 @@ function RegistrationForm(props) {
       e.target.reset();
       axiosWithAuth().post('/api/users/register', data)
         .then(response => {
-          console.log(response);
           window.localStorage.setItem('token', response.data.token);
           window.localStorage.setItem('user_id', response.data._id);
           props.history.push('/api/events');

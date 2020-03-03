@@ -24,7 +24,6 @@ const UpdateEvent = (props) => {
     const eventToEdit = props.events.find(event => `${event._id}` === id);
 
     if (eventToEdit) {
-      console.log(eventToEdit);
       setUpdatedEvent(eventToEdit);
     };
   }, [props.events, id]);
