@@ -18,6 +18,10 @@ const EventList = (props) => {
     props.history.push(`/api/update-event/${id}`);
   };
 
+  const getDetails = (id) => {
+    props.history.push(`/api/update-event/${id}`);
+  };
+
   const saveEvent = (confirmedEvent) => {
     props.addToConfirmedList(confirmedEvent);
   };
@@ -32,7 +36,7 @@ const EventList = (props) => {
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
               <address>{event.eventAddress}</address>
-              <Button onClick={() => toggle(event)}>More Details</Button>
+              <Button onClick={() => getDetails(event.id)}>More Details</Button>
               <Route path="/api/events/:id"  render={(props) => <MoreDetails {...props} event={event} saveEvent={saveEvent} updateEvent={updateEvent} deleteEvent={deleteEvent} />} />
             </div>
           ))}
