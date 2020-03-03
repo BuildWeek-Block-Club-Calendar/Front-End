@@ -4,10 +4,9 @@ import { useForm } from "react-hook-form";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 function LoginForm(props) {
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = (data, e) => {
-      console.log(data);
       e.target.reset();
       axiosWithAuth().post('/api/users/login', data)
         .then(response => {
