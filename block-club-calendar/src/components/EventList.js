@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getEvents, deleteEvent, addToConfirmedList } from '../actions/index';
-import { Route, Link } from 'react-router-dom';
-import MoreDetails from './MoreDetails';
+import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
 const EventList = (props) => {
@@ -43,8 +42,9 @@ const EventList = (props) => {
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
               <address>{event.eventAddress}</address>
-              <Button onClick={() => getDetails(event.id)}>More Details</Button>
-              <Route path="/api/events/:id"  render={(props) => <MoreDetails {...props} event={event} saveEvent={saveEvent} updateEvent={updateEvent} deleteEvent={deleteEvent} />} />
+              <Button onClick={() => saveEvent(event)}>Confirm</Button>{' '}
+              <Button onClick={() => updateEvent(event.id)}>Update</Button>{' '}
+              <Button onClick={() => deleteEvent(event.id)}>Delete</Button>
             </div>
           ))}
         </div>
