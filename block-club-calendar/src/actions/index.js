@@ -70,7 +70,7 @@ export const addEvent = (event) => (dispatch) => {
 export const updateEvent = (updatedEvent) => (dispatch) => {
   dispatch({ type: UPDATE_EVENT });
   axios.all([
-    axiosWithAuth().put(`/api/rest/events/${updateEvent.id}`, updatedEvent),
+    axiosWithAuth().put(`/api/rest/events/${updatedEvent.id}`, updatedEvent),
     axiosWithAuth().get('/api/rest/events')
   ])
   .then(axios.spread((put, get) => {

@@ -57,7 +57,7 @@ export const reducer = (state = initialState, action) => {
     case FETCH_EVENTS_SUCCESS:
       return {
         ...state,
-        events: [...state.events, action.payload],
+        events: action.payload,
         isFetching: false,
         error: ''
       }
@@ -95,7 +95,7 @@ export const reducer = (state = initialState, action) => {
     case ADD_EVENT_SUCCESS:
       return {
         ...state,
-        events: action.payload,
+        events: [...state.events, action.payload],
         isFetching: false,
         error: ''
       }
