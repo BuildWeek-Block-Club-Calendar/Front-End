@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getEvents, deleteEvent, addToConfirmedList } from '../actions/index';
-import PrivateRoute from '../utils/PrivateRoute';
 import { Route } from 'react-router-dom';
 import MoreDetails from './MoreDetails';
 import { Button } from 'reactstrap';
@@ -16,7 +15,7 @@ const EventList = (props) => {
 
   useEffect(() => {
     props.getEvents()
-  }, [props]);
+  }, []);
 
   const deleteEvent = (id) => {
     props.deleteEvent(id);

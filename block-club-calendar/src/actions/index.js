@@ -22,7 +22,7 @@ export const REMOVE_CONFRIMED = 'REMOVE_CONFIRMED';
 
 export const getEvents = () => (dispatch) => {
   dispatch({ type: FETCH_EVENTS });
-  axiosWithAuth().get('/api/rest/events')
+  axios.get('/api/rest/events')
     .then(response => {
       console.log(response);
       dispatch({ type: FETCH_EVENTS_SUCCESS, payload: response.data });

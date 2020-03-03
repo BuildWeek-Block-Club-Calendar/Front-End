@@ -45,7 +45,7 @@ function LoginForm(props) {
             <span>New to Block Club Calendar? </span>
             <Link to="/api/users/register">Sign Up Here</Link>
             <br />
-            <Link to="/api/events">Continue as guest</Link>
+            <Link to="/events">Continue as guest</Link>
         </form>
     )
 }
