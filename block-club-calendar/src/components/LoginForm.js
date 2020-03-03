@@ -12,6 +12,7 @@ function LoginForm(props) {
       axiosWithAuth().post('/api/users/login', data)
         .then(response => {
           console.log(response);
+          window.localStorage.setItem('token', response.data.token);
           props.history.push('/api/events');
         })
         .catch(error => {
@@ -23,10 +24,10 @@ function LoginForm(props) {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Block Club Calendar</h1>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="email">Email</label>
             <br />
             <input
-                name="username"
+                name="email"
                 ref={register({ required: true })}
             />
             {errors.username && <span>Username is required!</span>}
