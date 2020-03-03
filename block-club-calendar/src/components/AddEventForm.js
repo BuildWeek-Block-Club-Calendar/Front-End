@@ -12,7 +12,7 @@ const initialEventState = {
     eventAddress: '',
     eventCity: '',
     eventCountry: '',
-    eventCreator: window.localStorage.getItem('token'),
+    eventCreator: window.localStorage.getItem('user_id'),
     id: cuid()
 };
 
