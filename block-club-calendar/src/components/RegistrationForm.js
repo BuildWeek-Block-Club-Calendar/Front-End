@@ -1,13 +1,23 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-function RegistrationForm() {
-    const { register, handleSubmit, watch, errors, reset } = useForm()
+function RegistrationForm(props) {
+    const { register, handleSubmit, watch, errors, reset } = useForm();
+
     const onSubmit = (data, e) => {
-        console.log(data);
-        e.target.reset();
-    }
+      console.log(data);
+      e.target.reset();
+      axiosWithAuth().post('/api/users/register', data)
+        .then(response => {
+          console.log(response);
+          props.history.push('/api/events');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,13 +1,23 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-function LoginForm() {
-    const { register, handleSubmit, watch, errors } = useForm()
+function LoginForm(props) {
+    const { register, handleSubmit, watch, errors } = useForm();
+
     const onSubmit = (data, e) => {
-        console.log(data);
-        e.target.reset();
-    }
+      console.log(data);
+      e.target.reset();
+      axiosWithAuth().post('/api/users/login', data)
+        .then(response => {
+          console.log(response);
+          props.history.push('/api/events');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    };
 
 
     return (
@@ -25,6 +35,7 @@ function LoginForm() {
             <br />
             <input
                 name="password"
+                type="password"
                 ref={register({ required: true })}
             />
             {errors.password && <span>Password is required!</span>}

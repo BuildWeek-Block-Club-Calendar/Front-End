@@ -17,12 +17,8 @@ function App() {
         <Link to="/api/users/events">My Events</Link>
         <Link to="/api/create-event">Create Event</Link>
       </nav>
-      <Route exact path="/">
-        <LoginForm/>
-      </Route>
-      <Route path="/api/users/register">
-       <RegistrationForm/>
-      </Route>
+      <Route exact path="/" render={(props) => <LoginForm {...props} />} />
+      <Route path="/api/users/register" render={(props) => <RegistrationForm {...props} />} />
       <Route path="/api/events" component={EventList} />
       <Route path="/api/users/events" component={MyEvents} />
       {/* Make a PrivateRoute */}
