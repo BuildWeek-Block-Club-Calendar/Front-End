@@ -10,7 +10,6 @@ flex-direction:column;
 align-items:center;
 `
 
-
 const Form = styled.form`
 width:70%;
 font-size:3rem;
@@ -24,7 +23,6 @@ border-radius:5px;
 border:none;
 margin:20px auto;
 `
-
 
 function LoginForm(props) {
     const { register, handleSubmit, errors } = useForm();

@@ -28,6 +28,11 @@ const EventList = (props) => {
     props.addToConfirmedList(confirmedEvent);
   };
 
+  const signOut = () => {
+    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('user_id');
+  };
+
   return (
     <Container>
       <nav>
@@ -35,6 +40,7 @@ const EventList = (props) => {
         <Link to="/api/events">Upcoming Events</Link>
         <Link to="/api/users/events">My Events</Link>
         <Link to="/api/create-event">Create Event</Link>
+        <Link to="/" onClick={signOut}>Signout</Link>
       </nav>
 
       {props.isFetching ? (<div>Loading Events...</div>) : (
