@@ -236,15 +236,19 @@ const EventList = (props) => {
       {props.isFetching ? (<div>Loading Events...</div>) : (
         <div>
           {props.events.map((event) => (
-            <div key={event._id}>
-              <h3>{event.eventTitle}</h3>
-              <p>{formatDate(event)}</p>
-              <p>{formatTime(event)}</p>
-              <p>{event.eventDescription}</p>
-              <address>{event.eventAddress}, {event.eventCity}</address>
-                <Button onClick={() => saveEvent(event)}>Confirm</Button>{' '}
-                {event.eventCreator === window.localStorage.getItem('user_id') ? (<><Button className="user_action_buttons" onClick={() => updateEvent(event._id)}>Update</Button>{' '}
-                <Button className="user_action_buttons" onClick={() => deleteEvent(event._id)}>Delete</Button></>) : null}
+            <div>
+              {event.eventCity === window.localStorage.getItem('user_city') ? (
+                <div key={event._id}>
+                  <h3>{event.eventTitle}</h3>
+                  <p>{formatDate(event)}</p>
+                  <p>{formatTime(event)}</p>
+                  <p>{event.eventDescription}</p>
+                  <address>{event.eventAddress}, {event.eventCity}</address>
+                    <Button onClick={() => saveEvent(event)}>Confirm</Button>{' '}
+                    {event.eventCreator === window.localStorage.getItem('user_id') ? (<><Button className="user_action_buttons" onClick={() => updateEvent(event._id)}>Update</Button>{' '}
+                    <Button className="user_action_buttons" onClick={() => deleteEvent(event._id)}>Delete</Button></>) : null}
+                </div>
+              ) : null}
             </div>
           ))}
         </div>
