@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from 'react-router-dom';
 import { addEvent } from '../actions/index';
 import { connect } from 'react-redux';
 import cuid from 'cuid';
@@ -34,6 +35,14 @@ function AddEventForm(props) {
     };
 
     return (
+      <div>
+        <nav>
+          <Link to="/">Login</Link>
+          <Link to="/api/events">Upcoming Events</Link>
+          <Link to="/api/users/events">My Events</Link>
+          <Link to="/api/create-event">Create Event</Link>
+        </nav>
+
         <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Add an Event</h1>
             <label htmlFor="eventTitle">Event Title</label>
@@ -53,7 +62,7 @@ function AddEventForm(props) {
                 onChange={handleChanges}
             />
             <br />
-            <label htmlFor="eventStart">Start Time</label>
+            <label htmlFor="eventStart">Event Start</label>
             <br />
             <input
                 name="eventStart"
@@ -62,7 +71,7 @@ function AddEventForm(props) {
                 onChange={handleChanges}
             />
             <br />
-            <label htmlFor="eventEnd">End Time</label>
+            <label htmlFor="eventEnd">Event End</label>
             <br />
             <input
                 name="eventEnd"
@@ -97,6 +106,7 @@ function AddEventForm(props) {
             <br />
             <input type="submit" />
         </form>
+      </div>
     )
 }
 
