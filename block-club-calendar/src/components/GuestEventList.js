@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getGuestEvents } from '../actions/index';
 import { Link } from 'react-router-dom';
 
+
 const GuestEventList = (props) => {
   useEffect(() => {
     props.getGuestEvents()
@@ -10,7 +11,7 @@ const GuestEventList = (props) => {
 
   return (
     <div>
-      <nav>
+      <nav className="nav_links">
         <Link to="/">Login</Link>
         <Link to="/events">Upcoming Events</Link>
       </nav>
@@ -18,7 +19,7 @@ const GuestEventList = (props) => {
       {props.isFetching ? (<div>Loading Events...</div>) : (
         <div>
           {props.events.map((event) => (
-            <div key={event.id}>
+            <div key={event.id} className="event">
               <h3>{event.eventTitle}</h3>
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
