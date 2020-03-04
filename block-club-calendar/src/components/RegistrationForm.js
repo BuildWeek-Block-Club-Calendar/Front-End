@@ -10,7 +10,6 @@ flex-direction:column;
 align-items:center;
 `
 
-
 const Form = styled.form`
 width:70%;
 font-size:3rem;
@@ -25,8 +24,6 @@ border:none;
 margin:20px auto;
 `
 
-
-
 function RegistrationForm(props) {
     const { register, handleSubmit, errors } = useForm();
 
@@ -36,6 +33,7 @@ function RegistrationForm(props) {
         .then(response => {
           window.localStorage.setItem('token', response.data.token);
           window.localStorage.setItem('user_id', response.data._id);
+          window.localStorage.setItem('user_city', response.data.user.city);
           props.history.push('/api/events');
         })
         .catch(error => {

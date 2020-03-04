@@ -40,6 +40,15 @@ const UpdateEvent = (props) => {
     props.history.push('/api/events');
   };
 
+  const cancel = () => {
+    props.history.goBack();
+  };
+
+  const signOut = () => {
+    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('user_id');
+  };
+
   return (
     <div>
       <nav>
@@ -47,6 +56,7 @@ const UpdateEvent = (props) => {
         <Link to="/api/events">Upcoming Events</Link>
         <Link to="/api/users/events">My Events</Link>
         <Link to="/api/create-event">Create Event</Link>
+        <Link to="/" onClick={signOut}>Signout</Link>
       </nav>
 
       <form onSubmit={handleSubmit}>
@@ -114,6 +124,7 @@ const UpdateEvent = (props) => {
               onChange={handleChange} />
         </div>
         <button>Update Event</button>
+        <button onClick={cancel}>Cancel</button>
       </form>
     </div>
   );

@@ -18,6 +18,7 @@ const initialEventState = {
 };
 
 function AddEventForm(props) {
+  console.log('These are the props:',props);
     const { register, handleSubmit, errors } = useForm();
 
     const [newEvent, setNewEvent] = useState(initialEventState);
@@ -34,6 +35,15 @@ function AddEventForm(props) {
         props.history.push('/api/events');
     };
 
+    const cancel = () => {
+      props.history.goBack();
+    };
+
+    const signOut = () => {
+      window.localStorage.removeItem('token');
+      window.localStorage.removeItem('user_id');
+    };
+
     return (
       <div>
         <nav>
@@ -41,6 +51,7 @@ function AddEventForm(props) {
           <Link to="/api/events">Upcoming Events</Link>
           <Link to="/api/users/events">My Events</Link>
           <Link to="/api/create-event">Create Event</Link>
+          <Link to="/" onClick={signOut}>Signout</Link>
         </nav>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -104,7 +115,8 @@ function AddEventForm(props) {
                 onChange={handleChanges}
             />
             <br />
-            <input type="submit" />
+            <button>Create Event</button>
+            <button onClick={cancel}>Cancel</button>
         </form>
       </div>
     )
