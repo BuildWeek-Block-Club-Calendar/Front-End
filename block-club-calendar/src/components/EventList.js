@@ -3,6 +3,13 @@ import { connect } from 'react-redux';
 import { getEvents, deleteEvent, addToConfirmedList } from '../actions/index';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
+import styled from 'styled-components';
+
+const Container = styled.div`
+display:flex;
+flex-direction:column;
+align-items:center;
+`
 
 const EventList = (props) => {
   useEffect(() => {
@@ -32,7 +39,7 @@ const EventList = (props) => {
   };
 
   return (
-    <div>
+    <Container>
       <nav>
         <Link to="/">Login</Link>
         <Link to="/api/events">Upcoming Events</Link>
@@ -56,7 +63,7 @@ const EventList = (props) => {
           ))}
         </div>
       )}
-    </div>
+    </Container>
   )
 };
 
