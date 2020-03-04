@@ -98,6 +98,6 @@ export const addToConfirmedList = (confirmedEvent) => (dispatch) => {
   dispatch({ type: ADD_CONFIRMED, payload: confirmedEvent });
 };
 
-export const removeFromConfirmedList = (confirmedEvent) => (dispatch) => {
-  dispatch({ type: REMOVE_CONFRIMED, payload: confirmedEvent });
+export const removeFromConfirmedList = (id) => (dispatch) => {
+  dispatch({ type: REMOVE_CONFRIMED, payload: id });
 };

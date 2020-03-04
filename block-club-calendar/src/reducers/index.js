@@ -131,7 +131,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         confirmed: state.confirmed.filter((event) => {
-          return event.id !== action.payload.id
+          return event._id !== action.payload
         })
       }
     default:
