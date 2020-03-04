@@ -31,15 +31,16 @@ function RegistrationForm(props) {
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = (data, e) => {
-        e.target.reset();
-        axiosWithAuth().post('/api/users/register', data)
-            .then(response => {
-                console.log(response);
-                props.history.push('/api/events');
-            })
-            .catch(error => {
-                console.log(error);
-            });
+      e.target.reset();
+      axiosWithAuth().post('/api/users/register', data)
+        .then(response => {
+          window.localStorage.setItem('token', response.data.token);
+          window.localStorage.setItem('user_id', response.data._id);
+          props.history.push('/api/events');
+        })
+        .catch(error => {
+          console.log(error);
+        });
     };
 
     return (

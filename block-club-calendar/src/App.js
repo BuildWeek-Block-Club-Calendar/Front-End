@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import PrivateRoute from './utils/PrivateRoute';
 import LoginForm from "./components/LoginForm";
 import GuestEventList from './components/GuestEventList';
@@ -9,6 +9,7 @@ import RegistrationForm from "./components/RegistrationForm";
 import MyEvents from './components/MyEvents';
 import AddEventForm from './components/AddEventForm';
 import './App.css';
+import 'react-widgets/dist/css/react-widgets.css';
 
 function App() {
   return (

@@ -27,22 +27,20 @@ margin:20px auto;
 
 
 function LoginForm(props) {
-  const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = (data, e) => {
-    e.target.reset();
-    axiosWithAuth().post('/api/users/login', data)
-      .then(response => {
-        console.log(response);
-        window.localStorage.setItem('token', response.data.token);
-        props.history.push('/api/events');
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
-
+    const onSubmit = (data, e) => {
+      e.target.reset();
+      axiosWithAuth().post('/api/users/login', data)
+        .then(response => {
+          window.localStorage.setItem('token', response.data.token);
+          window.localStorage.setItem('user_id', response.data.user._id);
+          props.history.push('/api/events');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    };
 
   return (
     <Container>
