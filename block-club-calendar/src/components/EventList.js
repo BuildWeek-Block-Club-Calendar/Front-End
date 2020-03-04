@@ -16,16 +16,6 @@ const EventList = (props) => {
     props.getEvents();
   }, []);
 
-  const addClass = (event) => {
-    if (event.eventCreator === window.localStorage.getItem('user_id')) {
-      showButtons.classList.add("show");
-    };
-  };
-
-  const showButtons = document.querySelectorAll('.user_action_buttons');
-  console.log(showButtons);
-  // showButtons.addEventListener('load', alert('Page loaded'));
-
   const deleteEvent = (event) => {
     props.deleteEvent(event._id);
   };
@@ -55,10 +45,9 @@ const EventList = (props) => {
               <p>{event.eventStart} - {event.eventEnd}</p>
               <p>{event.eventDescription}</p>
               <address>{event.eventAddress}, {event.eventCity}</address>
-              {/* <p>{event.eventCreator}</p> */}
                 <Button onClick={() => saveEvent(event)}>Confirm</Button>{' '}
-                <Button className="user_action_buttons" onClick={() => updateEvent(event._id)}>Update</Button>{' '}
-                <Button className="user_action_buttons" onClick={() => deleteEvent(event._id)}>Delete</Button>
+                {event.eventCreator === window.localStorage.getItem('user_id') ? (<><Button className="user_action_buttons" onClick={() => updateEvent(event._id)}>Update</Button>{' '}
+                <Button className="user_action_buttons" onClick={() => deleteEvent(event._id)}>Delete</Button></>) : null}
             </div>
           ))}
         </div>
