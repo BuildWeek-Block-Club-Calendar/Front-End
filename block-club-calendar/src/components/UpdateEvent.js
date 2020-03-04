@@ -40,6 +40,10 @@ const UpdateEvent = (props) => {
     props.history.push('/api/events');
   };
 
+  const cancel = () => {
+    props.history.goBack();
+  };
+
   return (
     <div>
       <nav>
@@ -114,6 +118,7 @@ const UpdateEvent = (props) => {
               onChange={handleChange} />
         </div>
         <button>Update Event</button>
+        <button onClick={cancel}>Cancel</button>
       </form>
     </div>
   );

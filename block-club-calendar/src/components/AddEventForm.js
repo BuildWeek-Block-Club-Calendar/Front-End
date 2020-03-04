@@ -18,6 +18,7 @@ const initialEventState = {
 };
 
 function AddEventForm(props) {
+  console.log('These are the props:',props);
     const { register, handleSubmit, errors } = useForm();
 
     const [newEvent, setNewEvent] = useState(initialEventState);
@@ -32,6 +33,10 @@ function AddEventForm(props) {
     const onSubmit = (e) => {
         props.addEvent(newEvent);
         props.history.push('/api/events');
+    };
+
+    const cancel = () => {
+      props.history.goBack();
     };
 
     return (
@@ -104,7 +109,8 @@ function AddEventForm(props) {
                 onChange={handleChanges}
             />
             <br />
-            <input type="submit" />
+            <button>Create Event</button>
+            <button onClick={cancel}>Cancel</button>
         </form>
       </div>
     )
