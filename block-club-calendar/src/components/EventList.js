@@ -110,59 +110,117 @@ const EventList = (props) => {
     if (formatStart.getHours() > 12 && formatEnd.getHours() > 12) {
       const newStart = formatStart.getHours() - 12;
       const newEnd = formatEnd.getHours() - 12;
-      console.log(event.eventTitle, formatEnd.getMinutes());
-      console.log(event.eventTitle, formatStart.getMinutes());
 
-      if (formatStart.getMinutes() === 0 && formatEnd.getMinutes() === 0) {
-        return `${newStart}:00PM-${newEnd}:00PM`;
-      } else if (formatStart.getMinutes() === 0) {
+      if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
         if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
-          return `${newStart}:00PM-${newEnd}:0${formatEnd.getMinutes()}PM`
+          return `${newStart}:0${formatStart.getMinutes()}PM-${newEnd}:0${formatEnd.getMinutes()}PM`;
         } else {
-          return `${newStart}:00PM-${newEnd}:${formatEnd.getMinutes()}PM`
+          return `${newStart}:0${formatStart.getMinutes()}PM-${newEnd}:${formatEnd.getMinutes()}PM`;
         };
-      } else if (formatEnd.getMinutes() === 0) {
+      } else if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
         if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
-          return `${newStart}:0${formatStart.getMinutes()}PM-${newEnd}:00PM`
+          return `${newStart}:0${formatStart.getMinutes()}PM-${newEnd}:0${formatEnd.getMinutes()}PM`;
         } else {
-          return `${newStart}:${formatStart.getMinutes()}PM-${newEnd}:00PM`
+          return `${newStart}:${formatStart.getMinutes()}PM-${newEnd}:0${formatEnd.getMinutes()}PM`;
         };
+      } else {
+        return `${newStart}:${formatStart.getMinutes()}PM-${newEnd}:${formatEnd.getMinutes()}PM`;
       };
-    } else if (formatEnd.getHours() > 12) {
+    } 
+    
+    else if (formatEnd.getHours() > 12) {
       const newEnd = formatEnd.getHours() - 12;
 
-      if (formatStart.getMinutes() === 0 && formatEnd.getMinutes() === 0) {
-        return `${formatStart.getHours()}:00AM-${newEnd}:00PM`;
-      } else if (formatStart.getMinutes() === 0) {
+      if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
         if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
-          return `${formatStart.getHours()}:00AM-${newEnd}:0${formatEnd.getMinutes()}PM`
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}AM-${newEnd}:0${formatEnd.getMinutes()}PM`;
         } else {
-          return `${formatStart.getHours()}:00AM-${newEnd}:${formatEnd.getMinutes()}PM`
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}AM-${newEnd}:${formatEnd.getMinutes()}PM`;
         };
-      } else if (formatEnd.getMinutes() === 0) {
+      } else if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
         if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
-          return `${formatStart.getHours()}:0${formatStart.getMinutes()}AM-${newEnd}:00PM`
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}AM-${newEnd}:0${formatEnd.getMinutes()}PM`;
         } else {
-          return `${formatStart.getHours()}:${formatStart.getMinutes()}AM-${newEnd}:00PM`
+          return `${formatStart.getHours()}:${formatStart.getMinutes()}AM-${newEnd}:0${formatEnd.getMinutes()}PM`;
         };
+      } else {
+        return `${formatStart.getHours()}:${formatStart.getMinutes()}AM-${newEnd}:${formatEnd.getMinutes()}PM`;
       };
-    } else {
-      if (formatStart.getMinutes() === 0 && formatEnd.getMinutes() === 0) {
-        return `${formatStart.getHours()}:00AM-${formatEnd.getHours()}:00AM`;
-      } else if (formatStart.getMinutes() === 0) {
+    } 
+    
+    else if (formatStart.getHours() === 12 && formatEnd.getHours() === 12) {
+      if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
         if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
-          return `${formatStart.getHours()}:00AM-${formatEnd.getHours()}:0${formatEnd.getMinutes()}AM`
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}PM-${formatEnd.getHours()}:0${formatEnd.getMinutes()}PM`;
         } else {
-          return `${formatStart.getHours()}:00AM-${formatEnd.getHours()}:${formatEnd.getMinutes()}AM`
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}PM-${formatEnd.getHours()}:${formatEnd.getMinutes()}PM`;
         };
-      } else if (formatEnd.getMinutes() === 0) {
+      } else if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
         if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
-          return `${formatStart.getHours()}:0${formatStart.getMinutes()}AM-${formatEnd.getHours()}:00AM`
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}PM-${formatEnd.getHours()}:0${formatEnd.getMinutes()}PM`;
         } else {
-          return `${formatStart.getHours()}:${formatStart.getMinutes()}AM-${formatEnd.getHours()}:00AM`
+          return `${formatStart.getHours()}:${formatStart.getMinutes()}PM-${formatEnd.getHours()}:0${formatEnd.getMinutes()}PM`;
         };
+      } else {
+        return `${formatStart.getHours()}:${formatStart.getMinutes()}PM-${formatEnd.getHours()}:${formatEnd.getMinutes()}PM`;
       };
-    };
+    }
+
+    else if (formatStart.getHours() === 12) {
+      const newEnd = formatEnd.getHours() - 12;
+
+      if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
+        if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}PM-${newEnd}:0${formatEnd.getMinutes()}PM`;
+        } else {
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}PM-${newEnd}:${formatEnd.getMinutes()}PM`;
+        };
+      } else if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
+        if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}PM-${newEnd}:0${formatEnd.getMinutes()}PM`;
+        } else {
+          return `${formatStart.getHours()}:${formatStart.getMinutes()}PM-${newEnd}:0${formatEnd.getMinutes()}PM`;
+        };
+      } else {
+        return `${formatStart.getHours()}:${formatStart.getMinutes()}PM-${newEnd}:${formatEnd.getMinutes()}PM`;
+      };
+    }
+
+    else if (formatEnd.getHours() === 12) {
+      if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
+        if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}AM-${formatEnd.getHours()}:0${formatEnd.getMinutes()}PM`;
+        } else {
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}AM-${formatEnd.getHours()}:${formatEnd.getMinutes()}PM`;
+        };
+      } else if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
+        if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}AM-${formatEnd.getHours()}:0${formatEnd.getMinutes()}PM`;
+        } else {
+          return `${formatStart.getHours()}:${formatStart.getMinutes()}AM-${formatEnd.getHours()}:0${formatEnd.getMinutes()}PM`;
+        };
+      } else {
+        return `${formatStart.getHours()}:${formatStart.getMinutes()}AM-${formatEnd.getHours()}:${formatEnd.getMinutes()}PM`;
+      };
+    }
+
+    else {
+      if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
+        if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}AM-${formatEnd.getHours()}:0${formatEnd.getMinutes()}AM`;
+        } else {
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}AM-${formatEnd.getHours()}:${formatEnd.getMinutes()}AM`;
+        };
+      } else if (formatEnd.getMinutes() === 0 || formatEnd.getMinutes() < 10) {
+        if (formatStart.getMinutes() === 0 || formatStart.getMinutes() < 10) {
+          return `${formatStart.getHours()}:0${formatStart.getMinutes()}AM-${formatEnd.getHours()}:0${formatEnd.getMinutes()}AM`;
+        } else {
+          return `${formatStart.getHours()}:${formatStart.getMinutes()}AM-${formatEnd.getHours()}:0${formatEnd.getMinutes()}AM`;
+        };
+      } else {
+        return `${formatStart.getHours()}:${formatStart.getMinutes()}AM-${formatEnd.getHours()}:${formatEnd.getMinutes()}AM`;
+      };
+    }
   };
 
   return (
