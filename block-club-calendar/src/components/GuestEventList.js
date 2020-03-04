@@ -12,7 +12,7 @@ const GuestEventList = (props) => {
     <div>
       <nav>
         <Link to="/">Login</Link>
-        <Link to="/events">Nearby Events</Link>
+        <Link to="/events">Upcoming Events</Link>
       </nav>
 
       {props.isFetching ? (<div>Loading Events...</div>) : (
