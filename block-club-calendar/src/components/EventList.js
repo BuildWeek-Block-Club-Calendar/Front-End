@@ -58,7 +58,7 @@ const EventList = (props) => {
                   <address>{event.eventAddress}, {event.eventCity}</address>
                   <Button onClick={() => saveEvent(event, window.localStorage.getItem('user_id'))}>Confirm</Button>{' '}
                   {event.eventCreator === window.localStorage.getItem('user_id') ? (<><Button className="user_action_buttons" onClick={() => updateEvent(event._id)}>Update</Button>{' '}
-                    <Button className="user_action_buttons" onClick={() => deleteEvent(event._id)}>Delete</Button></>) : null}
+                  <Button className="user_action_buttons" onClick={() => deleteEvent(event._id)}>Delete</Button></>) : null}
                 </div>
               ) : null}
             </div>
