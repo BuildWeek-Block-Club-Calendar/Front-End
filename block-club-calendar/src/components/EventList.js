@@ -54,7 +54,6 @@ const EventList = (props) => {
                   <p>{formatDate(event)}</p>
                   <p>{formatTime(event)}</p>
                   <p>{event.eventDescription}</p>
-                  <p>{event.rsvpd}</p>
                   <address>{event.eventAddress}, {event.eventCity}</address>
                   <Button onClick={() => saveEvent(event, window.localStorage.getItem('user_id'))}>Confirm</Button>{' '}
                   {event.eventCreator === window.localStorage.getItem('user_id') ? (<><Button className="user_action_buttons" onClick={() => updateEvent(event._id)}>Update</Button>{' '}
