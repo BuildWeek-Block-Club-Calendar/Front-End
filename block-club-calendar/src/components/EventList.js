@@ -28,8 +28,8 @@ const EventList = (props) => {
     props.history.push(`/api/update-event/${id}`);
   };
 
-  const saveEvent = (confirmedEvent) => {
-    props.addToConfirmedList(confirmedEvent);
+  const saveEvent = (confirmedEvent, id) => {
+    props.addToConfirmedList(confirmedEvent, id);
   };
 
   return (
@@ -53,7 +53,7 @@ const EventList = (props) => {
                   <p>{formatTime(event)}</p>
                   <p>{event.eventDescription}</p>
                   <address>{event.eventAddress}, {event.eventCity}</address>
-                  <Button onClick={() => saveEvent(event)}>Confirm</Button>{' '}
+                  <Button onClick={() => saveEvent(event, window.localStorage.getItem('user_id'))}>Confirm</Button>{' '}
                   {event.eventCreator === window.localStorage.getItem('user_id') ? (<><Button className="user_action_buttons" onClick={() => updateEvent(event._id)}>Update</Button>{' '}
                     <Button className="user_action_buttons" onClick={() => deleteEvent(event._id)}>Delete</Button></>) : null}
                 </div>
