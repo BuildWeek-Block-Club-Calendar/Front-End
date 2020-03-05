@@ -4,6 +4,7 @@ import { getEvents, deleteEvent, addToConfirmedList } from '../actions/index';
 import { Link } from 'react-router-dom';
 import formatTime from '../utils/formatTime';
 import formatDate from '../utils/formatDate';
+import getLocation from '../utils/getLocation';
 import signOut from '../utils/signOut';
 import { Button } from 'reactstrap';
 import styled from 'styled-components';
@@ -18,6 +19,7 @@ align-items:center;
 const EventList = (props) => {
   useEffect(() => {
     props.getEvents();
+    getLocation();
   }, []);
 
   const deleteEvent = (id) => {
