@@ -8,8 +8,8 @@ import getLocation from '../utils/getLocation';
 
 const GuestEventList = (props) => {
   useEffect(() => {
-    props.getGuestEvents();
     getLocation();
+    props.getGuestEvents();
   }, []);
 
   return (

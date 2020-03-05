@@ -18,8 +18,8 @@ align-items:center;
 
 const EventList = (props) => {
   useEffect(() => {
-    props.getEvents();
     getLocation();
+    props.getEvents();
   }, []);
 
   const deleteEvent = (id) => {
