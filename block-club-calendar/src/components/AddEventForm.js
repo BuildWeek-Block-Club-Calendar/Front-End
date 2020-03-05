@@ -19,7 +19,6 @@ const initialEventState = {
 };
 
 function AddEventForm(props) {
-  console.log('These are the props:',props);
     const { register, handleSubmit, errors } = useForm();
 
     const [newEvent, setNewEvent] = useState(initialEventState);
