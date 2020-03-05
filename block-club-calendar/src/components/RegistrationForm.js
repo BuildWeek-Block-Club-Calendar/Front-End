@@ -31,10 +31,10 @@ function RegistrationForm(props) {
       e.target.reset();
       axiosWithAuth().post('/api/users/register', data)
         .then(response => {
+          props.history.push('/api/events');
           window.localStorage.setItem('token', response.data.token);
           window.localStorage.setItem('user_id', response.data._id);
           window.localStorage.setItem('user_city', response.data.user.city);
-          props.history.push('/api/events');
         })
         .catch(error => {
           console.log(error);

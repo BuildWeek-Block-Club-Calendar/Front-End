@@ -35,7 +35,6 @@ function LoginForm(props) {
           props.history.push('/api/events');
           window.localStorage.setItem('token', response.data.token);
           window.localStorage.setItem('user_id', response.data.user._id);
-          // props.history.push('/api/events');
         })
         .catch(error => {
           console.log(error);
