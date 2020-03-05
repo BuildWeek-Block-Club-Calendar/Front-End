@@ -4,11 +4,12 @@ import { getGuestEvents } from '../actions/index';
 import { Link } from 'react-router-dom';
 import formatTime from '../utils/formatTime';
 import formatDate from '../utils/formatDate';
-
+import getLocation from '../utils/getLocation';
 
 const GuestEventList = (props) => {
   useEffect(() => {
-    props.getGuestEvents()
+    props.getGuestEvents();
+    getLocation();
   }, []);
 
   return (
@@ -21,12 +22,16 @@ const GuestEventList = (props) => {
       {props.isFetching ? (<div>Loading Events...</div>) : (
         <div>
           {props.events.map((event) => (
-            <div key={event.id} className="event">
-              <h3>{event.eventTitle}</h3>
-              <p>{formatDate(event)}</p>
-              <p>{formatTime(event)}</p>
-              <p>{event.eventDescription}</p>
-              <address>{event.eventAddress}, {event.eventCity}</address>
+            <div key={event._id}>
+              {event.eventCity === window.localStorage.getItem('user_city') ? (
+                <div key={event._id} className="event">
+                  <h3>{event.eventTitle}</h3>
+                  <p>{formatDate(event)}</p>
+                  <p>{formatTime(event)}</p>
+                  <p>{event.eventDescription}</p>
+                  <address>{event.eventAddress}, {event.eventCity}</address>
+                </div>
+              ) : null}
             </div>
           ))}
         </div>
