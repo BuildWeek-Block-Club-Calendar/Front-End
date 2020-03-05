@@ -35,7 +35,9 @@ const showError = (error) => {
     case error.UNKNOWN_ERROR:
       console.log("An unknown error occurred.")
       break;
-  }
+    default:
+      return error
+  };
 };
 
 export default getLocation;
