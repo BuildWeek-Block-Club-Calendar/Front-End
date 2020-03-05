@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
@@ -26,6 +26,10 @@ margin:20px auto;
 
 function LoginForm(props) {
     const { register, handleSubmit, errors } = useForm();
+
+    useEffect(() => {
+      window.location.reload();
+    }, []);
 
     const onSubmit = (data, e) => {
       e.target.reset();
