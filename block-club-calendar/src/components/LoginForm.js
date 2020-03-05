@@ -32,9 +32,10 @@ function LoginForm(props) {
       axiosWithAuth().post('/api/users/login', data)
         .then(response => {
           console.log(response);
-          props.history.push('/api/events');
           window.localStorage.setItem('token', response.data.token);
           window.localStorage.setItem('user_id', response.data.user._id);
+          window.localStorage.setItem('user_city', response.data.user.city);
+          props.history.push('/api/events');
         })
         .catch(error => {
           console.log(error);
