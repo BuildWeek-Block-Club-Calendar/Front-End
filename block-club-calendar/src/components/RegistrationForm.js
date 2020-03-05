@@ -86,6 +86,7 @@ function RegistrationForm(props) {
                 <br />
                 <Input
                     name="password"
+                    type="password"
                     ref={register({ required: true })}
                 />
                 {errors.password && <span>Password is required!</span>}
