@@ -96,7 +96,7 @@ export const deleteEvent = (id) => (dispatch) => {
 
 export const addToConfirmedList = (confirmedEvent, id) => (dispatch) => {
   dispatch({ type: ADD_CONFIRMED, payload: confirmedEvent });
-  axiosWithAuth().post(`/api/rest/events/attend/${id}`)
+  axiosWithAuth().post(`/api/rest/events/attend/${id}`, confirmedEvent)
     .then(response => {
       console.log(response);
     })
