@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import { addEvent } from '../actions/index';
 import { connect } from 'react-redux';
+import signOut from '../utils/signOut';
 import cuid from 'cuid';
 
 const initialEventState = {
@@ -18,7 +19,6 @@ const initialEventState = {
 };
 
 function AddEventForm(props) {
-  console.log('These are the props:',props);
     const { register, handleSubmit, errors } = useForm();
 
     const [newEvent, setNewEvent] = useState(initialEventState);
@@ -39,14 +39,9 @@ function AddEventForm(props) {
       props.history.goBack();
     };
 
-    const signOut = () => {
-      window.localStorage.removeItem('token');
-      window.localStorage.removeItem('user_id');
-    };
-
     return (
       <div>
-        <nav>
+        <nav className="nav_links">
           <Link to="/">Login</Link>
           <Link to="/api/events">Upcoming Events</Link>
           <Link to="/api/users/events">My Events</Link>

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux'; 
 import { updateEvent } from '../actions/index';
 import { Link } from 'react-router-dom';
+import signOut from '../utils/signOut';
 
 const initialEventState = {
   eventTitle: '',
@@ -44,14 +45,9 @@ const UpdateEvent = (props) => {
     props.history.goBack();
   };
 
-  const signOut = () => {
-    window.localStorage.removeItem('token');
-    window.localStorage.removeItem('user_id');
-  };
-
   return (
     <div>
-      <nav>
+      <nav className="nav_links">
         <Link to="/">Login</Link>
         <Link to="/api/events">Upcoming Events</Link>
         <Link to="/api/users/events">My Events</Link>
