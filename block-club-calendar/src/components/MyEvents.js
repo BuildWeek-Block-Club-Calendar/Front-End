@@ -18,7 +18,7 @@ const MyEvents = (props) => {
 
   return ( 
     <div>
-      <nav>
+      <nav className="nav_links">
         <Link to="/">Login</Link>
         <Link to="/api/events">Upcoming Events</Link>
         <Link to="/api/users/events">My Events</Link>
@@ -27,7 +27,7 @@ const MyEvents = (props) => {
       </nav>
       
       {props.confirmed.map(event => (
-        <div key={event._id}>
+        <div key={event._id} className="event">
           <h3>{event.eventTitle}</h3>
           <p>{formatDate(event)}</p>
           <p>{formatTime(event)}</p>

@@ -39,7 +39,7 @@ const EventList = (props) => {
 
   return (
     <Container>
-      <nav className="nav-links">
+      <nav className="nav_links">
         <Link to="/">Login</Link>
         <Link to="/api/events">Upcoming Events</Link>
         <Link to="/api/users/events">My Events</Link>
