@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import { addEvent } from '../actions/index';
 import { connect } from 'react-redux';
+import signOut from '../utils/signOut';
 import cuid from 'cuid';
 
 const initialEventState = {
@@ -37,12 +38,6 @@ function AddEventForm(props) {
 
     const cancel = () => {
       props.history.goBack();
-    };
-
-    const signOut = () => {
-      window.localStorage.removeItem('token');
-      window.localStorage.removeItem('user_id');
-      window.localStorage.removeItem('user_city');
     };
 
     return (

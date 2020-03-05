@@ -4,16 +4,11 @@ import { removeFromConfirmedList } from '../actions/index';
 import { Link } from 'react-router-dom';
 import formatTime from '../utils/formatTime';
 import formatDate from '../utils/formatDate';
+import signOut from '../utils/signOut';
 
 const MyEvents = (props) => {
   const unconfirmEvent = (id) => {
     props.removeFromConfirmedList(id)
-  };
-
-  const signOut = () => {
-    window.localStorage.removeItem('token');
-    window.localStorage.removeItem('user_id');
-    window.localStorage.removeItem('user_city');
   };
 
   return ( 

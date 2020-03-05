@@ -4,6 +4,7 @@ import { getEvents, deleteEvent, addToConfirmedList } from '../actions/index';
 import { Link } from 'react-router-dom';
 import formatTime from '../utils/formatTime';
 import formatDate from '../utils/formatDate';
+import signOut from '../utils/signOut';
 import { Button } from 'reactstrap';
 import styled from 'styled-components';
 import '../App.css';
@@ -31,12 +32,6 @@ const EventList = (props) => {
     props.addToConfirmedList(confirmedEvent);
   };
 
-  const signOut = () => {
-    window.localStorage.removeItem('token');
-    window.localStorage.removeItem('user_id');
-    window.localStorage.removeItem('user_city');
-  };
-
   return (
     <Container>
       <nav className="nav_links">
@@ -50,7 +45,7 @@ const EventList = (props) => {
       {props.isFetching ? (<div>Loading Events...</div>) : (
         <div>
           {props.events.map((event) => (
-            <div>
+            <div key={event._id}>
               {event.eventCity === window.localStorage.getItem('user_city') ? (
                 <div key={event._id} className="event">
                   <h3>{event.eventTitle}</h3>

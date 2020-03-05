@@ -1,5 +1,3 @@
-import React from 'react';
-
 const formatDate = (event) => {
   const format = new Date(event.eventStart);
   var day;
@@ -26,6 +24,9 @@ const formatDate = (event) => {
       break;
     case 6:
       day = "Saturday";
+      break;
+    default:
+      return day
   };
 
   switch (format.getMonth()) {
@@ -65,6 +66,8 @@ const formatDate = (event) => {
     case 11:
       month = "December";
       break;
+    default:
+      return month
   };
 
   return `${day}, ${month} ${format.getDate()}, ${format.getFullYear()}`

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const formatTime = (event) => {
   const formatStart = new Date(event.eventStart);
   const formatEnd = new Date(event.eventEnd);
